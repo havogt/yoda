@@ -1,18 +1,18 @@
 Installation & Use
 ===================
 
-Add the ``<mchbuild>/cmake/modules`` directory to the ``CMAKE_MODULE_PATH`` to use the functions, macros and modules:
+Add the ``<yoda>/cmake/modules`` directory to the ``CMAKE_MODULE_PATH`` to use the functions, macros and modules:
 
 .. code-block:: cmake
 
-  list(APPEND CMAKE_MODULE_PATH "<mchbuild>/cmake/")
+  list(APPEND CMAKE_MODULE_PATH "<yoda>/cmake/")
 
-Note that all `mchbuild` projects contain a ``mchbuild_cmake_init`` macro which tries to find the CMake modules of MCHbuild.
+Note that all `yoda` projects contain a ``yoda_cmake_init`` macro which tries to find the CMake modules of yoda.
 
 .. code-block:: cmake
 
-  include(MCHbuildCMakeInit)
-  mchbuild_cmake_init()
+  include(yodaCMakeInit)
+  yoda_cmake_init()
 
 
 .. include:: user_manual.rst
@@ -21,17 +21,17 @@ Note that all `mchbuild` projects contain a ``mchbuild_cmake_init`` macro which 
 CMake Modules Reference
 =========================
 
-This section describes the CMake functionailty of MCHBuild.
+This section describes the CMake functionailty of yoda.
 
 Functions & Macros
 -------------------
 
-Each function and macro uses a `snake-case <https://en.wikipedia.org/wiki/Snake_case>`_ identifier and is defined in a separate file using the corresponding `camel-case <https://en.wikipedia.org/wiki/Camel_case>`_ filename. For example, to use the function ``mchbuild_add_target_clean_all`` include the file ``mchbuildAddTargetCleanAll`` as follows.
+Each function and macro uses a `snake-case <https://en.wikipedia.org/wiki/Snake_case>`_ identifier and is defined in a separate file using the corresponding `camel-case <https://en.wikipedia.org/wiki/Camel_case>`_ filename. For example, to use the function ``yoda_add_target_clean_all`` include the file ``yodaAddTargetCleanAll`` as follows.
 
 .. code-block:: cmake
 
-    include(DawnAddTargetCleanAll)
-    mchbuild_add_target_clean_all()
+    include(yodaAddTargetCleanAll)
+    yoda_add_target_clean_all()
 
 List of all functions and macros
 

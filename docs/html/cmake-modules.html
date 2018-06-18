@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Installation &amp; Use &mdash; Dawn  documentation</title>
+  <title>Installation &amp; Use &mdash; yoda  documentation</title>
   
 
   
@@ -35,7 +35,7 @@
         <link rel="index" title="Index"
               href="genindex.html"/>
         <link rel="search" title="Search" href="search.html"/>
-    <link rel="top" title="Dawn  documentation" href="index.html"/>
+    <link rel="top" title="yoda  documentation" href="index.html"/>
         <link rel="next" title="&lt;no title&gt;" href="cmake-modules/External_Boost.html"/>
         <link rel="prev" title="MCHBuild — A builder infrastructure for cmake projects" href="index.html"/> 
 
@@ -56,7 +56,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> Dawn
+            <a href="index.html" class="icon icon-home"> yoda
           
 
           
@@ -161,7 +161,7 @@
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">Dawn</a>
+          <a href="index.html">yoda</a>
         
       </nav>
 
@@ -214,13 +214,13 @@
             
   <div class="section" id="installation-use">
 <h1>Installation &amp; Use<a class="headerlink" href="#installation-use" title="Permalink to this headline">¶</a></h1>
-<p>Add the <code class="docutils literal"><span class="pre">&lt;mchbuild&gt;/cmake/modules</span></code> directory to the <code class="docutils literal"><span class="pre">CMAKE_MODULE_PATH</span></code> to use the functions, macros and modules:</p>
-<div class="highlight-cmake"><div class="highlight"><pre><span class="nb">list</span><span class="p">(</span><span class="s">APPEND</span> <span class="s">CMAKE_MODULE_PATH</span> <span class="s2">&quot;&lt;mchbuild&gt;/cmake/&quot;</span><span class="p">)</span>
+<p>Add the <code class="docutils literal"><span class="pre">&lt;yoda&gt;/cmake/modules</span></code> directory to the <code class="docutils literal"><span class="pre">CMAKE_MODULE_PATH</span></code> to use the functions, macros and modules:</p>
+<div class="highlight-cmake"><div class="highlight"><pre><span class="nb">list</span><span class="p">(</span><span class="s">APPEND</span> <span class="s">CMAKE_MODULE_PATH</span> <span class="s2">&quot;&lt;yoda&gt;/cmake/&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Note that all <cite>mchbuild</cite> projects contain a <code class="docutils literal"><span class="pre">mchbuild_cmake_init</span></code> macro which tries to find the CMake modules of MCHbuild.</p>
-<div class="highlight-cmake"><div class="highlight"><pre><span class="nb">include</span><span class="p">(</span><span class="s">MCHbuildCMakeInit</span><span class="p">)</span>
-<span class="nb">mchbuild_cmake_init</span><span class="p">()</span>
+<p>Note that all <cite>yoda</cite> projects contain a <code class="docutils literal"><span class="pre">yoda_cmake_init</span></code> macro which tries to find the CMake modules of yoda.</p>
+<div class="highlight-cmake"><div class="highlight"><pre><span class="nb">include</span><span class="p">(</span><span class="s">yodaCMakeInit</span><span class="p">)</span>
+<span class="nb">yoda_cmake_init</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -390,12 +390,12 @@ indicating the source directory, we need to possibly add the external project fo
 </div>
 <div class="section" id="cmake-modules-reference">
 <h1>CMake Modules Reference<a class="headerlink" href="#cmake-modules-reference" title="Permalink to this headline">¶</a></h1>
-<p>This section describes the CMake functionailty of MCHBuild.</p>
+<p>This section describes the CMake functionailty of yoda.</p>
 <div class="section" id="functions-macros">
 <h2>Functions &amp; Macros<a class="headerlink" href="#functions-macros" title="Permalink to this headline">¶</a></h2>
-<p>Each function and macro uses a <a class="reference external" href="https://en.wikipedia.org/wiki/Snake_case">snake-case</a> identifier and is defined in a separate file using the corresponding <a class="reference external" href="https://en.wikipedia.org/wiki/Camel_case">camel-case</a> filename. For example, to use the function <code class="docutils literal"><span class="pre">mchbuild_add_target_clean_all</span></code> include the file <code class="docutils literal"><span class="pre">mchbuildAddTargetCleanAll</span></code> as follows.</p>
-<div class="highlight-cmake"><div class="highlight"><pre><span class="nb">include</span><span class="p">(</span><span class="s">DawnAddTargetCleanAll</span><span class="p">)</span>
-<span class="nb">mchbuild_add_target_clean_all</span><span class="p">()</span>
+<p>Each function and macro uses a <a class="reference external" href="https://en.wikipedia.org/wiki/Snake_case">snake-case</a> identifier and is defined in a separate file using the corresponding <a class="reference external" href="https://en.wikipedia.org/wiki/Camel_case">camel-case</a> filename. For example, to use the function <code class="docutils literal"><span class="pre">yoda_add_target_clean_all</span></code> include the file <code class="docutils literal"><span class="pre">yodaAddTargetCleanAll</span></code> as follows.</p>
+<div class="highlight-cmake"><div class="highlight"><pre><span class="nb">include</span><span class="p">(</span><span class="s">yodaAddTargetCleanAll</span><span class="p">)</span>
+<span class="nb">yoda_add_target_clean_all</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>List of all functions and macros</p>
