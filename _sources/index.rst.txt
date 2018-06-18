@@ -1,6 +1,6 @@
 .. only: not latex
 
-MCHBuild --- A builder infrastructure for cmake projects
+yoda --- A builder infrastructure for cmake projects
 =========================================================
 
 .. only: not latex
