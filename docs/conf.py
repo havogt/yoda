@@ -59,7 +59,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = 'MCHBuild'
+project = 'Dawn'
 copyright = '2017, ETH Zurich and MeteoSwiss'
 author = 'Fabian Thuering, Carlos Osuna and Tobias Wicky'
 
@@ -212,7 +212,7 @@ html_show_sourcelink = False
 #html_search_scorer = 'scorer.js'
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'MCHBuilddoc'
+htmlhelp_basename = 'Dawndoc'
 
 # -- Options for LaTeX output ---------------------------------------------
 
@@ -234,8 +234,8 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  (master_doc, 'dawn.tex', 'MCHBuild Documentation',
-   'Fabian Thuering, Carlos Osuna and Tobias Wicky\\\\~\\\\MeteoSwiss', 'manual'),
+  (master_doc, 'dawn.tex', 'Dawn Documentation',
+   'Fabian Thuering, Carlos Osuna and Tobias Wicky\\\\~\\\\ETH Zurich and MeteoSwiss', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of

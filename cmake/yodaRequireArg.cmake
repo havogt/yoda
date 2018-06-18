@@ -1,28 +1,15 @@
 ##===-------------------------------------------------------------------------------------------===##
-##                        _..._                                                          
-##                     .-'_..._''.                                    .---._______       
-##  __  __   ___     .' .'      '.\  .         /|                 .--.|   |\  ___ `'.    
-## |  |/  `.'   `.  / .'           .'|         ||                 |__||   | ' |--.\  \   
-## |   .-.  .-.   '. '            <  |         ||                 .--.|   | | |    \  '  
-## |  |  |  |  |  || |             | |         ||  __             |  ||   | | |     |  ' 
-## |  |  |  |  |  || |             | | .'''-.  ||/'__ '.   _    _ |  ||   | | |     |  | 
-## |  |  |  |  |  |. '             | |/.'''. \ |:/`  '. ' | '  / ||  ||   | | |     ' .' 
-## |  |  |  |  |  | \ '.          .|  /    | | ||     | |.' | .' ||  ||   | | |___.' /'  
-## |__|  |__|  |__|  '. `._____.-'/| |     | | ||\    / '/  | /  ||__||   |/_______.'/   
-##                     `-.______ / | |     | | |/\'..' /|   `'.  |    '---'\_______|/    
-##                              `  | '.    | '.'  `'-'` '   .'|  '/                      
-##                                 '---'   '---'         `-'  `--'                       
 ##
 ##  This file is distributed under the MIT License (MIT). 
 ##  See LICENSE.txt for details.
 ##
 ##===------------------------------------------------------------------------------------------===##
 
-include(mchbuildIncludeGuard)
-mchbuild_include_guard()
+include(yodaIncludeGuard)
+yoda_include_guard()
 
 #.rst:
-# mchbuild_require_arg
+# yoda_require_arg
 # ----------------------
 #
 # It errors if the argument passed is not defined.
@@ -31,13 +18,13 @@ mchbuild_include_guard()
 #
 # .. code-block:: cmake
 #
-#   mchbuild_require_arg(ARG)
+#   yoda_require_arg(ARG)
 #
 # ``ARG``
 #  - argument that is required
 #
 
-function(mchbuild_require_arg ARG)
+function(yoda_require_arg ARG)
   if(ARGN STREQUAL "")
     message(FATAL_ERROR "missing required argument ${ARG}")
   endif()

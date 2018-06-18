@@ -1,30 +1,17 @@
 ##===-------------------------------------------------------------------------------------------===##
-##                        _..._                                                          
-##                     .-'_..._''.                                    .---._______       
-##  __  __   ___     .' .'      '.\  .         /|                 .--.|   |\  ___ `'.    
-## |  |/  `.'   `.  / .'           .'|         ||                 |__||   | ' |--.\  \   
-## |   .-.  .-.   '. '            <  |         ||                 .--.|   | | |    \  '  
-## |  |  |  |  |  || |             | |         ||  __             |  ||   | | |     |  ' 
-## |  |  |  |  |  || |             | | .'''-.  ||/'__ '.   _    _ |  ||   | | |     |  | 
-## |  |  |  |  |  |. '             | |/.'''. \ |:/`  '. ' | '  / ||  ||   | | |     ' .' 
-## |  |  |  |  |  | \ '.          .|  /    | | ||     | |.' | .' ||  ||   | | |___.' /'  
-## |__|  |__|  |__|  '. `._____.-'/| |     | | ||\    / '/  | /  ||__||   |/_______.'/   
-##                     `-.______ / | |     | | |/\'..' /|   `'.  |    '---'\_______|/    
-##                              `  | '.    | '.'  `'-'` '   .'|  '/                      
-##                                 '---'   '---'         `-'  `--'                       
 ##
 ##  This file is distributed under the MIT License (MIT). 
 ##  See LICENSE.txt for details.
 ##
 ##===------------------------------------------------------------------------------------------===##
 
-include(mchbuildIncludeGuard)
-mchbuild_include_guard()
+include(yodaIncludeGuard)
+yoda_include_guard()
 
-include(mchbuildGetScriptDir)
+include(yodaGetScriptDir)
 
 #.rst:
-# mchbuild_add_target_clean_all
+# yoda_add_target_clean_all
 # -------------------------------
 #
 # Provide a ``clean-all`` target which clears the CMake cache and all related CMake files and 
@@ -38,19 +25,19 @@ include(mchbuildGetScriptDir)
 #
 # .. code-block:: cmake
 #
-#  mchbuild_add_target_clean_all([dirs...])
+#  yoda_add_target_clean_all([dirs...])
 #
 # ``dirs``
 #   Addtional files or directories to remove.
 #
-set(MCHBUILD_CMAKE_DIR "${CMAKE_CURRENT_LIST_DIR}" INTERNAL)
+set(YODA_CMAKE_DIR "${CMAKE_CURRENT_LIST_DIR}" INTERNAL)
 
-function(mchbuild_add_target_clean_all)
-  mchbuild_get_script_dir(script_dir)
-  set(mchbuild_add_target_clean_all_extra_args ${ARGN})
+function(yoda_add_target_clean_all)
+  yoda_get_script_dir(script_dir)
+  set(yoda_add_target_clean_all_extra_args ${ARGN})
 
-  set(input_script ${script_dir}/mchbuildAddTargetCleanAll-Script.cmake.in)
-  set(output_script ${CMAKE_BINARY_DIR}/mchbuild-cmake/cmake/mchbuildAddTargetCleanAll-Script.cmake)
+  set(input_script ${script_dir}/yodaAddTargetCleanAll-Script.cmake.in)
+  set(output_script ${CMAKE_BINARY_DIR}/yoda-cmake/cmake/yodaAddTargetCleanAll-Script.cmake)
 
   # Configure the script
   configure_file(${input_script} ${output_script} @ONLY)

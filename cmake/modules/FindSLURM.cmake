@@ -1,3 +1,35 @@
+##===-------------------------------------------------------------------------------------------===##
+##
+##  This file is distributed under the MIT License (MIT). 
+##  See LICENSE.txt for details.
+##
+##===------------------------------------------------------------------------------------------===##
+
+#.rst:
+# .. _FindSLURM:
+#
+# FindSLURM
+# --------
+#
+# .. code-block:: cmake
+#
+#   find_package(SLURM [REQUIRED] [QUIET])
+#
+# Find the SLURM executables and variables.
+#
+# Result Variables
+# ^^^^^^^^^^^^^^^^
+#
+# Defines the following variables:
+#
+# ``SLURM_SBATCH_COMMAND``
+#   the path to sbatch command
+# ``SLURM_SRUN_COMMAND``
+#   the path to srun submission command
+# ``SLURM_SACCTMGR_COMMAND``
+#   the path to sacctmgr command
+#
+
 find_program(SLURM_SBATCH_COMMAND sbatch DOC "Path to the SLURM sbatch executable")
 find_program(SLURM_SRUN_COMMAND srun DOC "Path to the SLURM srun executable")
 find_program(SLURM_SACCTMGR_COMMAND sacctmgr DOC "Path to the SLURM sacctmgr executable")

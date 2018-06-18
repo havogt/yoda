@@ -1,35 +1,22 @@
 ##===-------------------------------------------------------------------------------------------===##
-##                        _..._                                                          
-##                     .-'_..._''.                                    .---._______       
-##  __  __   ___     .' .'      '.\  .         /|                 .--.|   |\  ___ `'.    
-## |  |/  `.'   `.  / .'           .'|         ||                 |__||   | ' |--.\  \   
-## |   .-.  .-.   '. '            <  |         ||                 .--.|   | | |    \  '  
-## |  |  |  |  |  || |             | |         ||  __             |  ||   | | |     |  ' 
-## |  |  |  |  |  || |             | | .'''-.  ||/'__ '.   _    _ |  ||   | | |     |  | 
-## |  |  |  |  |  |. '             | |/.'''. \ |:/`  '. ' | '  / ||  ||   | | |     ' .' 
-## |  |  |  |  |  | \ '.          .|  /    | | ||     | |.' | .' ||  ||   | | |___.' /'  
-## |__|  |__|  |__|  '. `._____.-'/| |     | | ||\    / '/  | /  ||__||   |/_______.'/   
-##                     `-.______ / | |     | | |/\'..' /|   `'.  |    '---'\_______|/    
-##                              `  | '.    | '.'  `'-'` '   .'|  '/                      
-##                                 '---'   '---'         `-'  `--'                       
 ##
 ##  This file is distributed under the MIT License (MIT). 
 ##  See LICENSE.txt for details.
 ##
 ##===------------------------------------------------------------------------------------------===##
 
-include(mchbuildIncludeGuard)
-mchbuild_include_guard()
+include(yodaIncludeGuard)
+yoda_include_guard()
 
 #.rst:
-# mchbuild_find_python_module
+# yoda_find_python_module
 # --------------------------------------
 #
 # Try to find a specific python module.
 #
 # .. code-block:: cmake
 #
-#   mchbuild_find_python_module(MODULE [REQUIRED])
+#   yoda_find_python_module(MODULE [REQUIRED])
 #
 # ``MODULE``
 #   Python module to find.
@@ -48,7 +35,7 @@ mchbuild_include_guard()
 # ``PYTHON_<module>_PATH``    
 #   Path to the module where ``<module>`` is the python module to search for in all uppercase.
 #
-function(mchbuild_find_python_module MODULE)
+function(yoda_find_python_module MODULE)
   string(TOUPPER ${MODULE} module_upper)
 
   if(NOT PYTHON_${module_upper}_FOUND)
@@ -93,4 +80,4 @@ function(mchbuild_find_python_module MODULE)
         endif()
     endif()
   endif(NOT PYTHON_${module_upper}_FOUND)
-endfunction(mchbuild_find_python_module)
+endfunction(yoda_find_python_module)

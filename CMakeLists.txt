@@ -32,19 +32,19 @@ if(NOT CMAKE_INSTALL_PREFIX)
       "Install path prefix, prepended onto install directories." FORCE)
 endif()
 
-project(mchbuild NONE)
+project(yoda NONE)
 cmake_minimum_required(VERSION 3.3)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/modules")
 
-include(mchbuildAddTargetCleanAll)
-include(mchbuildGenerateCMakeScript)
+include(yodaAddTargetCleanAll)
+include(yodaGenerateCMakeScript)
 
 
-set(MCHBUILD_DOCUMENTATION ON CACHE BOOL "Build documentation" FORCE)
+set(YODA_DOCUMENTATION ON CACHE BOOL "Build documentation" FORCE)
 
-if(MCHBUILD_DOCUMENTATION)
+if(YODA_DOCUMENTATION)
 
   find_package(Sphinx REQUIRED)
   add_subdirectory(docs)
@@ -52,12 +52,12 @@ if(MCHBUILD_DOCUMENTATION)
 endif()
 
 # Add custom targets
-mchbuild_add_target_clean_all(
+yoda_add_target_clean_all(
   ${CMAKE_SOURCE_DIR}/docs/cmake-modules
-  ${CMAKE_BINARY_DIR}/mchbuild-cmake
+  ${CMAKE_BINARY_DIR}/yoda-cmake
   ${CMAKE_BINARY_DIR}/sphinx
   ${CMAKE_BINARY_DIR}/docs
 )
 
-mchbuild_generate_cmake_script(${CMAKE_SOURCE_DIR} ${CMAKE_BINARY_DIR})
+yoda_generate_cmake_script(${CMAKE_SOURCE_DIR} ${CMAKE_BINARY_DIR})
 

@@ -1,31 +1,18 @@
 ##===-------------------------------------------------------------------------------------------===##
-##                        _..._                                                          
-##                     .-'_..._''.                                    .---._______       
-##  __  __   ___     .' .'      '.\  .         /|                 .--.|   |\  ___ `'.    
-## |  |/  `.'   `.  / .'           .'|         ||                 |__||   | ' |--.\  \   
-## |   .-.  .-.   '. '            <  |         ||                 .--.|   | | |    \  '  
-## |  |  |  |  |  || |             | |         ||  __             |  ||   | | |     |  ' 
-## |  |  |  |  |  || |             | | .'''-.  ||/'__ '.   _    _ |  ||   | | |     |  | 
-## |  |  |  |  |  |. '             | |/.'''. \ |:/`  '. ' | '  / ||  ||   | | |     ' .' 
-## |  |  |  |  |  | \ '.          .|  /    | | ||     | |.' | .' ||  ||   | | |___.' /'  
-## |__|  |__|  |__|  '. `._____.-'/| |     | | ||\    / '/  | /  ||__||   |/_______.'/   
-##                     `-.______ / | |     | | |/\'..' /|   `'.  |    '---'\_______|/    
-##                              `  | '.    | '.'  `'-'` '   .'|  '/                      
-##                                 '---'   '---'         `-'  `--'                       
 ##
 ##  This file is distributed under the MIT License (MIT). 
 ##  See LICENSE.txt for details.
 ##
 ##===------------------------------------------------------------------------------------------===##
 
-include(mchbuildIncludeGuard)
-mchbuild_include_guard()
+include(yodaIncludeGuard)
+yoda_include_guard()
 
 include(CMakeParseArguments)
-include(mchbuildRequireArg)
+include(yodaRequireArg)
 
 #.rst:
-# mchbuild_combine_libraries
+# yoda_combine_libraries
 # -----------------------------------
 #
 # Combine multiple object libraries to a single static and, if ``BUILD_SHARED_LIBS`` is ON, shared 
@@ -35,28 +22,28 @@ include(mchbuildRequireArg)
 #
 # .. code-block:: cmake
 #
-#   mchbuild_combine_libraries(NAME OBJECTS DEPENDS)
+#   yoda_combine_libraries(NAME OBJECTS DEPENDS)
 #
 # ``NAME``
 #   Name of the library.
 # ``OBJECTS``
-#   Object libraries to combine (see :ref:`mchbuild_add_library`).
+#   Object libraries to combine (see :ref:`yoda_add_library`).
 # ``INSTALL_DESTINATION``
 #   Destition (relative to ``CMAKE_INSTALL_PREFIX``) to install the libraries.
 # ``DEPENDS`` [optional]
 #   List of external libraries and/or CMake targets treated as dependencies of the library.
 #
-function(mchbuild_combine_libraries)
+function(yoda_combine_libraries)
   set(options)
   set(one_value_args NAME INSTALL_DESTINATION VERSION)
   set(multi_value_args OBJECTS DEPENDS)
   cmake_parse_arguments(ARG "${options}" "${one_value_args}" "${multi_value_args}" ${ARGN})
 
-  mchbuild_require_arg("VERSION" ${ARG_VERSION}) 
-  mchbuild_require_arg("INSTALL_DESTINATION" ${ARG_INSTALL_DESTINATION})
+  yoda_require_arg("VERSION" ${ARG_VERSION}) 
+  yoda_require_arg("INSTALL_DESTINATION" ${ARG_INSTALL_DESTINATION})
 
   if(NOT("${ARG_UNPARSED_ARGUMENTS}" STREQUAL ""))
-    message(FATAL_ERROR "mchbuild_combine_libraries: invalid argument ${ARG_UNPARSED_ARGUMENTS}")
+    message(FATAL_ERROR "yoda_combine_libraries: invalid argument ${ARG_UNPARSED_ARGUMENTS}")
   endif()
 
   if(NOT("${ARG_OBJECTS}" STREQUAL ""))

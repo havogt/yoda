@@ -1,24 +1,11 @@
 ##===-------------------------------------------------------------------------------------------===##
-##                        _..._                                                          
-##                     .-'_..._''.                                    .---._______       
-##  __  __   ___     .' .'      '.\  .         /|                 .--.|   |\  ___ `'.    
-## |  |/  `.'   `.  / .'           .'|         ||                 |__||   | ' |--.\  \   
-## |   .-.  .-.   '. '            <  |         ||                 .--.|   | | |    \  '  
-## |  |  |  |  |  || |             | |         ||  __             |  ||   | | |     |  ' 
-## |  |  |  |  |  || |             | | .'''-.  ||/'__ '.   _    _ |  ||   | | |     |  | 
-## |  |  |  |  |  |. '             | |/.'''. \ |:/`  '. ' | '  / ||  ||   | | |     ' .' 
-## |  |  |  |  |  | \ '.          .|  /    | | ||     | |.' | .' ||  ||   | | |___.' /'  
-## |__|  |__|  |__|  '. `._____.-'/| |     | | ||\    / '/  | /  ||__||   |/_______.'/   
-##                     `-.______ / | |     | | |/\'..' /|   `'.  |    '---'\_______|/    
-##                              `  | '.    | '.'  `'-'` '   .'|  '/                      
-##                                 '---'   '---'         `-'  `--'                       
 ##
 ##  This file is distributed under the MIT License (MIT). 
 ##  See LICENSE.txt for details.
 ##
 ##===------------------------------------------------------------------------------------------===##
 
-# mchbuild_make_cmake_script
+# yoda_make_cmake_script
 # -----------------------------
 #
 # Create bash script for re-invoking CMake in the build directory. 
@@ -27,7 +14,7 @@
 #   BUILD_DIR:PATH=<>    - Directory to install the script
 #   ARGN:LIST=<>        - List of arguments used to invoke CMake
 #
-macro(mchbuild_make_cmake_script CMAKE_LISTS_DIR BUILD_DIR)
+macro(yoda_make_cmake_script CMAKE_LISTS_DIR BUILD_DIR)
   set(script_args)
 
   foreach(arg ${ARGN})

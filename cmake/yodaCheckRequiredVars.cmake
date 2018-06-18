@@ -1,35 +1,22 @@
 ##===-------------------------------------------------------------------------------------------===##
-##                        _..._                                                          
-##                     .-'_..._''.                                    .---._______       
-##  __  __   ___     .' .'      '.\  .         /|                 .--.|   |\  ___ `'.    
-## |  |/  `.'   `.  / .'           .'|         ||                 |__||   | ' |--.\  \   
-## |   .-.  .-.   '. '            <  |         ||                 .--.|   | | |    \  '  
-## |  |  |  |  |  || |             | |         ||  __             |  ||   | | |     |  ' 
-## |  |  |  |  |  || |             | | .'''-.  ||/'__ '.   _    _ |  ||   | | |     |  | 
-## |  |  |  |  |  |. '             | |/.'''. \ |:/`  '. ' | '  / ||  ||   | | |     ' .' 
-## |  |  |  |  |  | \ '.          .|  /    | | ||     | |.' | .' ||  ||   | | |___.' /'  
-## |__|  |__|  |__|  '. `._____.-'/| |     | | ||\    / '/  | /  ||__||   |/_______.'/   
-##                     `-.______ / | |     | | |/\'..' /|   `'.  |    '---'\_______|/    
-##                              `  | '.    | '.'  `'-'` '   .'|  '/                      
-##                                 '---'   '---'         `-'  `--'                       
 ##
 ##  This file is distributed under the MIT License (MIT). 
 ##  See LICENSE.txt for details.
 ##
 ##===------------------------------------------------------------------------------------------===##
 
-include(mchbuildIncludeGuard)
-mchbuild_include_guard()
+include(yodaIncludeGuard)
+yoda_include_guard()
 
 #.rst:
-# mchbuild_check_required_vars
+# yoda_check_required_vars
 # -------------------------------
 #
 # It checks that the list of `REQUIRED_VARS` is contained within the list of `SET_VARS`
 # 
 # .. code-block:: cmake
 #   
-#   mchbuild_check_required_vars(SET_VARS "svars..." REQUIRED_VARS "rvars...")
+#   yoda_check_required_vars(SET_VARS "svars..." REQUIRED_VARS "rvars...")
 #
 # * Input arguments:
 #
@@ -38,7 +25,7 @@ mchbuild_include_guard()
 #  ``REQUIRED_VARS``
 #   list of variables that should be contained in the list of `SET_VARS`
 #
-function(mchbuild_check_required_vars)
+function(yoda_check_required_vars)
 
   cmake_policy(SET CMP0057 NEW)
 

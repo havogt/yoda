@@ -1,4 +1,4 @@
-yoda <br/> <a target="_blank" href="http://semver.org">![Version][Version.Badge]</a> <a target="_blank" href="https://opensource.org/licenses/MIT">![License: MIT][MIT.License]</a> <a target="_blank" href="https://MeteoSwiss-APN.github.io/mchbuild">![Documentation][Documentation.Badge]</a>
+yoda <br/> <a target="_blank" href="http://semver.org">![Version][Version.Badge]</a> <a target="_blank" href="https://opensource.org/licenses/MIT">![License: MIT][MIT.License]</a> <a target="_blank" href="https://MeteoSwiss-APN.github.io/yoda">![Documentation][Documentation.Badge]</a>
 ====
 
 ## Introduction

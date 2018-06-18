@@ -1,17 +1,4 @@
 ##===-------------------------------------------------------------------------------------------===##
-##                        _..._                                                          
-##                     .-'_..._''.                                    .---._______       
-##  __  __   ___     .' .'      '.\  .         /|                 .--.|   |\  ___ `'.    
-## |  |/  `.'   `.  / .'           .'|         ||                 |__||   | ' |--.\  \   
-## |   .-.  .-.   '. '            <  |         ||                 .--.|   | | |    \  '  
-## |  |  |  |  |  || |             | |         ||  __             |  ||   | | |     |  ' 
-## |  |  |  |  |  || |             | | .'''-.  ||/'__ '.   _    _ |  ||   | | |     |  | 
-## |  |  |  |  |  |. '             | |/.'''. \ |:/`  '. ' | '  / ||  ||   | | |     ' .' 
-## |  |  |  |  |  | \ '.          .|  /    | | ||     | |.' | .' ||  ||   | | |___.' /'  
-## |__|  |__|  |__|  '. `._____.-'/| |     | | ||\    / '/  | /  ||__||   |/_______.'/   
-##                     `-.______ / | |     | | |/\'..' /|   `'.  |    '---'\_______|/    
-##                              `  | '.    | '.'  `'-'` '   .'|  '/                      
-##                                 '---'   '---'         `-'  `--'                       
 ##
 ##  This file is distributed under the MIT License (MIT). 
 ##  See LICENSE.txt for details.
@@ -19,15 +6,15 @@
 ##===------------------------------------------------------------------------------------------===##
 
 include(CMakeParseArguments)
-include(mchbuildMakePackageInfo)
-include(mchbuildRequireArg)
-include(mchbuildAddOptionalDeps)
-include(mchbuildGetCacheVariables)
-include(mchbuildCheckVarsAreDefined)
+include(yodaMakePackageInfo)
+include(yodaRequireArg)
+include(yodaAddOptionalDeps)
+include(yodaGetCacheVariables)
+include(yodaCheckVarsAreDefined)
 
 #.rst:
 #
-# mchbuild_find_package
+# yoda_find_package
 # ------------------------
 #
 # Try to find the package <PACKAGE>. If the package cannot be found via find_package, the 
@@ -40,7 +27,7 @@ include(mchbuildCheckVarsAreDefined)
 #
 # .. code-block:: cmake
 #
-#   mchbuild_find_package(PACKAGE "package" PACKAGE_ARGS "package_args" 
+#   yoda_find_package(PACKAGE "package" PACKAGE_ARGS "package_args" 
 #           REQUIRED_VARS "required_vars" VERSION_VAR "version_var")
 #
 #
@@ -61,13 +48,13 @@ include(mchbuildCheckVarsAreDefined)
 # ``BUILD_VERSION:STRING``
 #   - Version of the package which is built (if required)
 #
-macro(mchbuild_find_package)
+macro(yoda_find_package)
   set(options NO_DEFAULT_PATH)
   set(one_value_args PACKAGE BUILD_VERSION VERSION_VAR)
   set(multi_value_args PACKAGE_ARGS REQUIRED_VARS FORWARD_VARS DEPENDS ADDITIONAL )
   cmake_parse_arguments(ARG "${options}" "${one_value_args}" "${multi_value_args}" ${ARGN})
 
-  mchbuild_require_arg("PACKAGE" ${ARG_PACKAGE})
+  yoda_require_arg("PACKAGE" ${ARG_PACKAGE})
 
   if(NOT("${ARG_UNPARSED_ARGUMENTS}" STREQUAL ""))
     message(FATAL_ERROR "invalid argument ${ARG_UNPARSED_ARGUMENTS}")
@@ -98,7 +85,7 @@ macro(mchbuild_find_package)
     include(${external_file})
 
     set(CMAKE_ARGS)
-    mchbuild_get_cache_variables(CMAKE_ARGS)
+    yoda_get_cache_variables(CMAKE_ARGS)
     set(forward_params "CMAKE_ARGS" ${CMAKE_ARGS} ${ARG_ADDITIONAL})
     if(ARG_FORWARD_VARS) 
       set(forward_params ${forward_params} "FORWARD_VARS" ${ARG_FORWARD_VARS})
@@ -107,9 +94,9 @@ macro(mchbuild_find_package)
       set(forward_params ${forward_params} "REQUIRED_VARS" ${ARG_REQUIRED_VARS})
     endif()
     
-    mchbuild_external_package(${forward_params})
+    yoda_external_package(${forward_params})
     # we check that all required vars are properly set and forwarded here
-    mchbuild_check_vars_are_defined(ARG_REQUIRED_VARS)
+    yoda_check_vars_are_defined(ARG_REQUIRED_VARS)
   else()
     # Check if the system has the package
 
@@ -172,7 +159,7 @@ macro(mchbuild_find_package)
     else()
       set(USE_SYSTEM_${package_upper} OFF CACHE BOOL ${doc} FORCE)
       set(CMAKE_ARGS)
-      mchbuild_get_cache_variables(CMAKE_ARGS)
+      yoda_get_cache_variables(CMAKE_ARGS)
       include(${external_file})
       set(forward_params "CMAKE_ARGS" ${CMAKE_ARGS} ${ARG_ADDITIONAL})
       if(ARG_FORWARD_VARS)
@@ -182,9 +169,9 @@ macro(mchbuild_find_package)
         set(forward_params ${forward_params} "REQUIRED_VARS" ${ARG_REQUIRED_VARS})
       endif()
 
-      mchbuild_external_package(${forward_params})
+      yoda_external_package(${forward_params})
       # we check that all required vars are properly set and forwarded here
-      mchbuild_check_vars_are_defined(ARG_REQUIRED_VARS)
+      yoda_check_vars_are_defined(ARG_REQUIRED_VARS)
 
     endif()
   endif()
@@ -192,11 +179,11 @@ macro(mchbuild_find_package)
   # Set the dependencies if we build
   if(NOT(use_system) AND ARG_DEPENDS)
     set(deps)
-    mchbuild_add_optional_deps(deps ${ARG_DEPENDS})
+    yoda_add_optional_deps(deps ${ARG_DEPENDS})
     if(deps)
       add_dependencies(${target} ${deps})
     endif()
   endif()
 
-#  mchbuild_make_package_info(${ARG_PACKAGE} ${version} ${use_system})
+#  yoda_make_package_info(${ARG_PACKAGE} ${version} ${use_system})
 endmacro()

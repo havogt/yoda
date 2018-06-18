@@ -1,17 +1,4 @@
 ##===-------------------------------------------------------------------------------------------===##
-##                        _..._                                                          
-##                     .-'_..._''.                                    .---._______       
-##  __  __   ___     .' .'      '.\  .         /|                 .--.|   |\  ___ `'.    
-## |  |/  `.'   `.  / .'           .'|         ||                 |__||   | ' |--.\  \   
-## |   .-.  .-.   '. '            <  |         ||                 .--.|   | | |    \  '  
-## |  |  |  |  |  || |             | |         ||  __             |  ||   | | |     |  ' 
-## |  |  |  |  |  || |             | | .'''-.  ||/'__ '.   _    _ |  ||   | | |     |  | 
-## |  |  |  |  |  |. '             | |/.'''. \ |:/`  '. ' | '  / ||  ||   | | |     ' .' 
-## |  |  |  |  |  | \ '.          .|  /    | | ||     | |.' | .' ||  ||   | | |___.' /'  
-## |__|  |__|  |__|  '. `._____.-'/| |     | | ||\    / '/  | /  ||__||   |/_______.'/   
-##                     `-.______ / | |     | | |/\'..' /|   `'.  |    '---'\_______|/    
-##                              `  | '.    | '.'  `'-'` '   .'|  '/                      
-##                                 '---'   '---'         `-'  `--'                       
 ##
 ##  This file is distributed under the MIT License (MIT). 
 ##  See LICENSE.txt for details.
@@ -19,13 +6,13 @@
 ##===------------------------------------------------------------------------------------------===##
 
 include(CMakeParseArguments)
-include(mchbuildRequireArg)
-include(mchbuildIncludeGuard)
+include(yodaRequireArg)
+include(yodaIncludeGuard)
 
-mchbuild_include_guard()
+yoda_include_guard()
 
 #.rst:
-# mchbuild_clone_repository
+# yoda_clone_repository
 # ----------------------------
 #
 # It clones the repository in the `${PROJECT_SOURCE_DIR}`
@@ -33,7 +20,7 @@ mchbuild_include_guard()
 # 
 # .. code-block:: cmake
 # 
-#   mchbuild_clone_repository(NAME URL BRANCH SOURCE_DIR)
+#   yoda_clone_repository(NAME URL BRANCH SOURCE_DIR)
 #
 # * Input arguments:
 # 
@@ -46,14 +33,14 @@ mchbuild_include_guard()
 #  ``SOURCE_DIR:STRING``
 #    Root source directory where the package will be cloned
 #
-function(mchbuild_clone_repository)
+function(yoda_clone_repository)
   set(options)
   set(one_value_args NAME URL BRANCH SOURCE_DIR)
   set(multi_value_args)
   cmake_parse_arguments(ARG "${options}" "${one_value_args}" "${multi_value_args}" ${ARGN})
 
-  mchbuild_require_arg("ARG_NAME" ${ARG_NAME})
-  mchbuild_require_arg("ARG_SOURCE_DIR" ${ARG_SOURCE_DIR})
+  yoda_require_arg("ARG_NAME" ${ARG_NAME})
+  yoda_require_arg("ARG_SOURCE_DIR" ${ARG_SOURCE_DIR})
 
   string(TOUPPER ${ARG_NAME} upper_name)
 

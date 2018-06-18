@@ -1,34 +1,21 @@
 ##===-------------------------------------------------------------------------------------------===##
-##                        _..._                                                          
-##                     .-'_..._''.                                    .---._______       
-##  __  __   ___     .' .'      '.\  .         /|                 .--.|   |\  ___ `'.    
-## |  |/  `.'   `.  / .'           .'|         ||                 |__||   | ' |--.\  \   
-## |   .-.  .-.   '. '            <  |         ||                 .--.|   | | |    \  '  
-## |  |  |  |  |  || |             | |         ||  __             |  ||   | | |     |  ' 
-## |  |  |  |  |  || |             | | .'''-.  ||/'__ '.   _    _ |  ||   | | |     |  | 
-## |  |  |  |  |  |. '             | |/.'''. \ |:/`  '. ' | '  / ||  ||   | | |     ' .' 
-## |  |  |  |  |  | \ '.          .|  /    | | ||     | |.' | .' ||  ||   | | |___.' /'  
-## |__|  |__|  |__|  '. `._____.-'/| |     | | ||\    / '/  | /  ||__||   |/_______.'/   
-##                     `-.______ / | |     | | |/\'..' /|   `'.  |    '---'\_______|/    
-##                              `  | '.    | '.'  `'-'` '   .'|  '/                      
-##                                 '---'   '---'         `-'  `--'                       
 ##
 ##  This file is distributed under the MIT License (MIT). 
 ##  See LICENSE.txt for details.
 ##
 ##===------------------------------------------------------------------------------------------===##
 
-include(mchbuildGetCacheVariables)
+include(yodaGetCacheVariables)
 
 #.rst:
-# mchbuild_generate_cmake_script
+# yoda_generate_cmake_script
 # --------------------------------
 #
 # Create bash script for re-invoking CMake in the build directory. 
 #
 # .. code-block:: cmake
 #
-#   mchbuild_generate_cmake_script(CMAKE_LISTS_DIR BUILD_DIR)
+#   yoda_generate_cmake_script(CMAKE_LISTS_DIR BUILD_DIR)
 #
 # * Input arguments
 #
@@ -37,10 +24,10 @@ include(mchbuildGetCacheVariables)
 #   ``BUILD_DIR:PATH``
 #    - Directory to install the script
 #
-macro(mchbuild_generate_cmake_script CMAKE_LISTS_DIR BUILD_DIR)
+macro(yoda_generate_cmake_script CMAKE_LISTS_DIR BUILD_DIR)
   set(script_args)
   set(_CMAKE_ARGS_)
-  mchbuild_get_cache_variables(_CMAKE_ARGS_)
+  yoda_get_cache_variables(_CMAKE_ARGS_)
   foreach(arg ${_CMAKE_ARGS_})
     string(REGEX MATCH "^(.*)=+(.*)$" dummy ${arg})
     if(NOT(CMAKE_MATCH_1) AND NOT(CMAKE_MATCH_2))

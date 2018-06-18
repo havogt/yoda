@@ -1,30 +1,17 @@
 ##===-------------------------------------------------------------------------------------------===##
-##                        _..._                                                          
-##                     .-'_..._''.                                    .---._______       
-##  __  __   ___     .' .'      '.\  .         /|                 .--.|   |\  ___ `'.    
-## |  |/  `.'   `.  / .'           .'|         ||                 |__||   | ' |--.\  \   
-## |   .-.  .-.   '. '            <  |         ||                 .--.|   | | |    \  '  
-## |  |  |  |  |  || |             | |         ||  __             |  ||   | | |     |  ' 
-## |  |  |  |  |  || |             | | .'''-.  ||/'__ '.   _    _ |  ||   | | |     |  | 
-## |  |  |  |  |  |. '             | |/.'''. \ |:/`  '. ' | '  / ||  ||   | | |     ' .' 
-## |  |  |  |  |  | \ '.          .|  /    | | ||     | |.' | .' ||  ||   | | |___.' /'  
-## |__|  |__|  |__|  '. `._____.-'/| |     | | ||\    / '/  | /  ||__||   |/_______.'/   
-##                     `-.______ / | |     | | |/\'..' /|   `'.  |    '---'\_______|/    
-##                              `  | '.    | '.'  `'-'` '   .'|  '/                      
-##                                 '---'   '---'         `-'  `--'                       
 ##
 ##  This file is distributed under the MIT License (MIT). 
 ##  See LICENSE.txt for details.
 ##
 ##===------------------------------------------------------------------------------------------===##
 
-include(mchbuildIncludeGuard)
-mchbuild_include_guard()
+include(yodaIncludeGuard)
+yoda_include_guard()
 
-include(mchbuildGetScriptDir)
+include(yodaGetScriptDir)
 
 #.rst:
-# mchbuild_get_git_head_revision
+# yoda_get_git_head_revision
 # ---------------------------------------
 #
 # These functions force a re-configure on each git commit so that you can trust the values of the 
@@ -32,14 +19,14 @@ include(mchbuildGetScriptDir)
 #
 # .. code-block:: cmake
 #
-#   mchbuild_get_git_head_revision(HEAD_REF HEAD_HASH)
+#   yoda_get_git_head_revision(HEAD_REF HEAD_HASH)
 # 
 # ``HEAD_REF``
 #   The `Refspec <https://git-scm.com/book/en/v2/Git-Internals-The-Refspec>`_.
 # ``HEAD_HASH``
 #   sha1 hash of the current head revision.
 #
-function(mchbuild_get_git_head_revision HEAD_REF HEAD_HASH)
+function(yoda_get_git_head_revision HEAD_REF HEAD_HASH)
   set(git_parent_dir "${CMAKE_CURRENT_SOURCE_DIR}")
   set(git_dir "${git_parent_dir}/.git")
 
@@ -78,9 +65,9 @@ function(mchbuild_get_git_head_revision HEAD_REF HEAD_HASH)
   set(head_file ${git_data_dir}/HEAD)
   configure_file("${git_dir}/HEAD" "${head_file}" COPYONLY)
 
-  mchbuild_get_script_dir(script_dir)
-  set(input_script ${script_dir}/mchbuildGetGitHeadRevision-Script.cmake.in)
-  set(output_script ${CMAKE_BINARY_DIR}/CMakeFiles/git-data/cmake/mchbuildGetGitHeadRevision-Script.cmake)
+  yoda_get_script_dir(script_dir)
+  set(input_script ${script_dir}/yodaGetGitHeadRevision-Script.cmake.in)
+  set(output_script ${CMAKE_BINARY_DIR}/CMakeFiles/git-data/cmake/yodaGetGitHeadRevision-Script.cmake)
 
   # Configure the script
   set(in_head_file ${head_file})

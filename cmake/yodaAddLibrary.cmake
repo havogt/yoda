@@ -1,32 +1,19 @@
 ##===-------------------------------------------------------------------------------------------===##
 ##                        _..._                                                          
-##                     .-'_..._''.                                    .---._______       
-##  __  __   ___     .' .'      '.\  .         /|                 .--.|   |\  ___ `'.    
-## |  |/  `.'   `.  / .'           .'|         ||                 |__||   | ' |--.\  \   
-## |   .-.  .-.   '. '            <  |         ||                 .--.|   | | |    \  '  
-## |  |  |  |  |  || |             | |         ||  __             |  ||   | | |     |  ' 
-## |  |  |  |  |  || |             | | .'''-.  ||/'__ '.   _    _ |  ||   | | |     |  | 
-## |  |  |  |  |  |. '             | |/.'''. \ |:/`  '. ' | '  / ||  ||   | | |     ' .' 
-## |  |  |  |  |  | \ '.          .|  /    | | ||     | |.' | .' ||  ||   | | |___.' /'  
-## |__|  |__|  |__|  '. `._____.-'/| |     | | ||\    / '/  | /  ||__||   |/_______.'/   
-##                     `-.______ / | |     | | |/\'..' /|   `'.  |    '---'\_______|/    
-##                              `  | '.    | '.'  `'-'` '   .'|  '/                      
-##                                 '---'   '---'         `-'  `--'                       
-##
 ##  This file is distributed under the MIT License (MIT). 
 ##  See LICENSE.txt for details.
 ##
 ##===------------------------------------------------------------------------------------------===##
 
-include(mchbuildIncludeGuard)
-mchbuild_include_guard()
+include(yodaIncludeGuard)
+yoda_include_guard()
 
 include(CMakeParseArguments)
 
 #.rst:
-# .. _mchbuild_add_library:
+# .. _yoda_add_library:
 #
-# mchbuild_add_library
+# yoda_add_library
 # ----------------------------
 #
 # Compile the given sources into an archive or object library. This will provide the CMake targets
@@ -34,7 +21,7 @@ include(CMakeParseArguments)
 #
 # .. code-block:: cmake
 #
-#   mchbuild_add_library(NAME SOURCES DEPENDS [OUTPUT_DIR])
+#   yoda_add_library(NAME SOURCES DEPENDS [OUTPUT_DIR])
 #
 # ``NAME``
 #   Name of the exectuable as well as the CMake target to build it.
@@ -47,7 +34,7 @@ include(CMakeParseArguments)
 # ``ARCHIVE`` [optional] 
 #   Create a static and, if ``BUILD_SHARED_LIBS`` is ON, shared archive.
 #
-function(mchbuild_add_library)  
+function(yoda_add_library)  
   set(options OBJECT ARCHIVE)
   set(one_value_args NAME)
   set(multi_value_args SOURCES DEPENDS)

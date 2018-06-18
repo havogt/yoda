@@ -1,17 +1,4 @@
 ##===-------------------------------------------------------------------------------------------===##
-##                        _..._                                                          
-##                     .-'_..._''.                                    .---._______       
-##  __  __   ___     .' .'      '.\  .         /|                 .--.|   |\  ___ `'.    
-## |  |/  `.'   `.  / .'           .'|         ||                 |__||   | ' |--.\  \   
-## |   .-.  .-.   '. '            <  |         ||                 .--.|   | | |    \  '  
-## |  |  |  |  |  || |             | |         ||  __             |  ||   | | |     |  ' 
-## |  |  |  |  |  || |             | | .'''-.  ||/'__ '.   _    _ |  ||   | | |     |  | 
-## |  |  |  |  |  |. '             | |/.'''. \ |:/`  '. ' | '  / ||  ||   | | |     ' .' 
-## |  |  |  |  |  | \ '.          .|  /    | | ||     | |.' | .' ||  ||   | | |___.' /'  
-## |__|  |__|  |__|  '. `._____.-'/| |     | | ||\    / '/  | /  ||__||   |/_______.'/   
-##                     `-.______ / | |     | | |/\'..' /|   `'.  |    '---'\_______|/    
-##                              `  | '.    | '.'  `'-'` '   .'|  '/                      
-##                                 '---'   '---'         `-'  `--'                       
 ##
 ##  This file is distributed under the MIT License (MIT). 
 ##  See LICENSE.txt for details.
@@ -23,11 +10,11 @@ set(dirs "@CLANG-FORMAT_DIRECTORIES@")
 set(extensions "@CLANG-FORMAT_EXTENSION@")
 
 if(NOT(executable))
-  message(FATAL_ERROR "mchbuild_add_target_clang_format: clang-format executable not found!")
+  message(FATAL_ERROR "yoda_add_target_clang_format: clang-format executable not found!")
 endif()
 
 if(NOT(extensions))
-   message(FATAL_ERROR "mchbuild_add_target_clang_format: invalid extension \"${extensions}\"")
+   message(FATAL_ERROR "yoda_add_target_clang_format: invalid extension \"${extensions}\"")
 endif()
 
 # Glob the files

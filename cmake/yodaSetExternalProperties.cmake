@@ -1,17 +1,4 @@
 ##===-------------------------------------------------------------------------------------------===##
-##                        _..._                                                          
-##                     .-'_..._''.                                    .---._______       
-##  __  __   ___     .' .'      '.\  .         /|                 .--.|   |\  ___ `'.    
-## |  |/  `.'   `.  / .'           .'|         ||                 |__||   | ' |--.\  \   
-## |   .-.  .-.   '. '            <  |         ||                 .--.|   | | |    \  '  
-## |  |  |  |  |  || |             | |         ||  __             |  ||   | | |     |  ' 
-## |  |  |  |  |  || |             | | .'''-.  ||/'__ '.   _    _ |  ||   | | |     |  | 
-## |  |  |  |  |  |. '             | |/.'''. \ |:/`  '. ' | '  / ||  ||   | | |     ' .' 
-## |  |  |  |  |  | \ '.          .|  /    | | ||     | |.' | .' ||  ||   | | |___.' /'  
-## |__|  |__|  |__|  '. `._____.-'/| |     | | ||\    / '/  | /  ||__||   |/_______.'/   
-##                     `-.______ / | |     | | |/\'..' /|   `'.  |    '---'\_______|/    
-##                              `  | '.    | '.'  `'-'` '   .'|  '/                      
-##                                 '---'   '---'         `-'  `--'                       
 ##
 ##  This file is distributed under the MIT License (MIT). 
 ##  See LICENSE.txt for details.
@@ -21,16 +8,16 @@
 include(CMakeParseArguments)
 
 #.rst:
-# mchbuild_set_external_properties
+# yoda_set_external_properties
 # ------------------------------------
 #
-# Set directories associated to an external project used by mchbuild. 
+# Set directories associated to an external project used by yoda. 
 # The function is used to impose a convention for directories of external projects
 # where they will be installed and built. 
 #
 # .. code-block:: cmake
 #
-#   mchbuild_set_external_properties(NAME <pkg> INSTALL_DIR <install_dir_var> 
+#   yoda_set_external_properties(NAME <pkg> INSTALL_DIR <install_dir_var> 
 #      SOURCE_DIR <source_dir_var> BINARY_DIR <binary_dir_var>)
 #
 # ``NAME``
@@ -45,7 +32,7 @@ include(CMakeParseArguments)
 # ``BINARY_DIR`` 
 # variable that will hold the building directory
 #
-function(mchbuild_set_external_properties)
+function(yoda_set_external_properties)
   set(options)
   set(one_value_args NAME INSTALL_DIR SOURCE_DIR BINARY_DIR)
   set(multi_value_args)

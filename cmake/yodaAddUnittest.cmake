@@ -1,30 +1,17 @@
 ##===-------------------------------------------------------------------------------------------===##
 ##                        _..._                                                          
-##                     .-'_..._''.                                    .---._______       
-##  __  __   ___     .' .'      '.\  .         /|                 .--.|   |\  ___ `'.    
-## |  |/  `.'   `.  / .'           .'|         ||                 |__||   | ' |--.\  \   
-## |   .-.  .-.   '. '            <  |         ||                 .--.|   | | |    \  '  
-## |  |  |  |  |  || |             | |         ||  __             |  ||   | | |     |  ' 
-## |  |  |  |  |  || |             | | .'''-.  ||/'__ '.   _    _ |  ||   | | |     |  | 
-## |  |  |  |  |  |. '             | |/.'''. \ |:/`  '. ' | '  / ||  ||   | | |     ' .' 
-## |  |  |  |  |  | \ '.          .|  /    | | ||     | |.' | .' ||  ||   | | |___.' /'  
-## |__|  |__|  |__|  '. `._____.-'/| |     | | ||\    / '/  | /  ||__||   |/_______.'/   
-##                     `-.______ / | |     | | |/\'..' /|   `'.  |    '---'\_______|/    
-##                              `  | '.    | '.'  `'-'` '   .'|  '/                      
-##                                 '---'   '---'         `-'  `--'                       
-##
 ##  This file is distributed under the MIT License (MIT). 
 ##  See LICENSE.txt for details.
 ##
 ##===------------------------------------------------------------------------------------------===##
 
-include(mchbuildIncludeGuard)
-mchbuild_include_guard()
+include(yodaIncludeGuard)
+yoda_include_guard()
 
-include(mchbuildAddExecutable)
+include(yodaAddExecutable)
 
 #.rst:
-# mchbuild_add_unittest
+# yoda_add_unittest
 # ----------------------------
 #
 # Compile the given objects into a runnable unittest executable (.exe) and register it within CTest.
@@ -33,7 +20,7 @@ include(mchbuildAddExecutable)
 #
 # .. code-block:: cmake
 #
-#   mchbuild_add_unittest(NAME SOURCES DEPENDS [OUTPUT_DIR GTEST_ARGS])
+#   yoda_add_unittest(NAME SOURCES DEPENDS [OUTPUT_DIR GTEST_ARGS])
 #
 # ``NAME``
 #   Name of the unittest exectuable as well as the CMake target to build it.
@@ -46,16 +33,16 @@ include(mchbuildAddExecutable)
 # ``GTEST_ARGS`` [optional]
 #   Arguments passed to the created GTest exectuable (e.g ``--gtest_color=yes``)
 #
-function(mchbuild_add_unittest)
+function(yoda_add_unittest)
   set(one_value_args NAME OUTPUT_DIR)
   set(multi_value_args SOURCES DEPENDS GTEST_ARGS)
   cmake_parse_arguments(ARG "${options}" "${one_value_args}" "${multi_value_args}" ${ARGN})
 
   if(NOT("${ARG_UNPARSED_ARGUMENTS}" STREQUAL ""))
-    message(FATAL_ERROR "mchbuild_add_unittest: invalid argument ${ARG_UNPARSED_ARGUMENTS}")
+    message(FATAL_ERROR "yoda_add_unittest: invalid argument ${ARG_UNPARSED_ARGUMENTS}")
   endif()
 
-  mchbuild_add_executable(
+  yoda_add_executable(
     NAME ${ARG_NAME} 
     SOURCES ${ARG_SOURCES} 
     DEPENDS ${ARG_DEPENDS}

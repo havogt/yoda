@@ -1,28 +1,15 @@
 ##===-------------------------------------------------------------------------------------------===##
-##                        _..._                                                          
-##                     .-'_..._''.                                    .---._______       
-##  __  __   ___     .' .'      '.\  .         /|                 .--.|   |\  ___ `'.    
-## |  |/  `.'   `.  / .'           .'|         ||                 |__||   | ' |--.\  \   
-## |   .-.  .-.   '. '            <  |         ||                 .--.|   | | |    \  '  
-## |  |  |  |  |  || |             | |         ||  __             |  ||   | | |     |  ' 
-## |  |  |  |  |  || |             | | .'''-.  ||/'__ '.   _    _ |  ||   | | |     |  | 
-## |  |  |  |  |  |. '             | |/.'''. \ |:/`  '. ' | '  / ||  ||   | | |     ' .' 
-## |  |  |  |  |  | \ '.          .|  /    | | ||     | |.' | .' ||  ||   | | |___.' /'  
-## |__|  |__|  |__|  '. `._____.-'/| |     | | ||\    / '/  | /  ||__||   |/_______.'/   
-##                     `-.______ / | |     | | |/\'..' /|   `'.  |    '---'\_______|/    
-##                              `  | '.    | '.'  `'-'` '   .'|  '/                      
-##                                 '---'   '---'         `-'  `--'                       
 ##
 ##  This file is distributed under the MIT License (MIT). 
 ##  See LICENSE.txt for details.
 ##
 ##===------------------------------------------------------------------------------------------===##
 
-include(mchbuildIncludeGuard)
-mchbuild_include_guard()
+include(yodaIncludeGuard)
+yoda_include_guard()
 
 #.rst:
-# mchbuild_configure_file
+# yoda_configure_file
 # ----------------------------------
 #
 # Configure a file and store the output in the same directory hirarchy as the input file while 
@@ -32,7 +19,7 @@ mchbuild_include_guard()
 #
 # .. code-block:: cmake
 #
-#   mchbuild_configure_file(FILE)
+#   yoda_configure_file(FILE)
 #
 # ``FILE``
 #   File to configure.
@@ -42,13 +29,13 @@ mchbuild_include_guard()
 # 
 # .. code-block:: cmake
 #
-#   mchbuild_configure_file(${CMAKE_SOURCE_DIR}/src/mchbuild/Config.h.cmake)
+#   yoda_configure_file(${CMAKE_SOURCE_DIR}/src/yoda/Config.h.cmake)
 #
-# Ths stores the configured file in ``${CMAKE_BINARY_DIR}/src/mchbuild/Config.h`` and, in addition, it 
-# will install it in ``${CMAKE_INSTALL_PREFIX}/include/mchbuild/Config.h``" (hence it will strip 
+# Ths stores the configured file in ``${CMAKE_BINARY_DIR}/src/yoda/Config.h`` and, in addition, it 
+# will install it in ``${CMAKE_INSTALL_PREFIX}/include/yoda/Config.h``" (hence it will strip 
 # ``"src/"``).
 #
-function(mchbuild_configure_file FILE)
+function(yoda_configure_file FILE)
   get_filename_component(absolute_path ${FILE} ABSOLUTE)
   file(RELATIVE_PATH relative_path ${CMAKE_SOURCE_DIR} ${absolute_path})
 

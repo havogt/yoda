@@ -1,33 +1,20 @@
 ##===-------------------------------------------------------------------------------------------===##
-##                        _..._                                                          
-##                     .-'_..._''.                                    .---._______       
-##  __  __   ___     .' .'      '.\  .         /|                 .--.|   |\  ___ `'.    
-## |  |/  `.'   `.  / .'           .'|         ||                 |__||   | ' |--.\  \   
-## |   .-.  .-.   '. '            <  |         ||                 .--.|   | | |    \  '  
-## |  |  |  |  |  || |             | |         ||  __             |  ||   | | |     |  ' 
-## |  |  |  |  |  || |             | | .'''-.  ||/'__ '.   _    _ |  ||   | | |     |  | 
-## |  |  |  |  |  |. '             | |/.'''. \ |:/`  '. ' | '  / ||  ||   | | |     ' .' 
-## |  |  |  |  |  | \ '.          .|  /    | | ||     | |.' | .' ||  ||   | | |___.' /'  
-## |__|  |__|  |__|  '. `._____.-'/| |     | | ||\    / '/  | /  ||__||   |/_______.'/   
-##                     `-.______ / | |     | | |/\'..' /|   `'.  |    '---'\_______|/    
-##                              `  | '.    | '.'  `'-'` '   .'|  '/                      
-##                                 '---'   '---'         `-'  `--'                       
 ##
 ##  This file is distributed under the MIT License (MIT). 
 ##  See LICENSE.txt for details.
 ##
 ##===------------------------------------------------------------------------------------------===##
 
-list(APPEND CMAKE_MODULE_PATH "@MCHBUILD_CMAKE_DIR@/cmake")
+list(APPEND CMAKE_MODULE_PATH "@YODA_CMAKE_DIR@/cmake")
 
-include(mchbuildGenerateCMakeScript)
+include(yodaGenerateCMakeScript)
 
 set(cmake_generated ${CMAKE_BINARY_DIR}/CMakeCache.txt
                     ${CMAKE_BINARY_DIR}/Makefile
                     ${CMAKE_BINARY_DIR}/CTestTestfile.cmake
                     ${CMAKE_BINARY_DIR}/cmake_install.cmake
                     ${CMAKE_BINARY_DIR}/CMakeFiles
-                    @mchbuild_add_target_clean_all_extra_args@
+                    @yoda_add_target_clean_all_extra_args@
 )
 
 foreach(file ${cmake_generated})
@@ -37,5 +24,5 @@ foreach(file ${cmake_generated})
   endif()
 endforeach(file)
 
-mchbuild_generate_cmake_script(@CMAKE_SOURCE_DIR@ @CMAKE_BINARY_DIR@)
+yoda_generate_cmake_script(@CMAKE_SOURCE_DIR@ @CMAKE_BINARY_DIR@)
 

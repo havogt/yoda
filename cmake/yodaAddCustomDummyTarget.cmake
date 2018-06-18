@@ -1,30 +1,17 @@
 ##===-------------------------------------------------------------------------------------------===##
-##                        _..._                                                          
-##                     .-'_..._''.                                    .---._______       
-##  __  __   ___     .' .'      '.\  .         /|                 .--.|   |\  ___ `'.    
-## |  |/  `.'   `.  / .'           .'|         ||                 |__||   | ' |--.\  \   
-## |   .-.  .-.   '. '            <  |         ||                 .--.|   | | |    \  '  
-## |  |  |  |  |  || |             | |         ||  __             |  ||   | | |     |  ' 
-## |  |  |  |  |  || |             | | .'''-.  ||/'__ '.   _    _ |  ||   | | |     |  | 
-## |  |  |  |  |  |. '             | |/.'''. \ |:/`  '. ' | '  / ||  ||   | | |     ' .' 
-## |  |  |  |  |  | \ '.          .|  /    | | ||     | |.' | .' ||  ||   | | |___.' /'  
-## |__|  |__|  |__|  '. `._____.-'/| |     | | ||\    / '/  | /  ||__||   |/_______.'/   
-##                     `-.______ / | |     | | |/\'..' /|   `'.  |    '---'\_______|/    
-##                              `  | '.    | '.'  `'-'` '   .'|  '/                      
-##                                 '---'   '---'         `-'  `--'                       
 ##
 ##  This file is distributed under the MIT License (MIT). 
 ##  See LICENSE.txt for details.
 ##
 ##===------------------------------------------------------------------------------------------===##
 
-include(mchbuildIncludeGuard)
-mchbuild_include_guard()
+include(yodaIncludeGuard)
+yoda_include_guard()
 
 include(CMakeParseArguments)
 
 #.rst:
-# mchbuild_add_custom_dummy_target
+# yoda_add_custom_dummy_target
 # --------------------------------
 #
 # Creates a dummy target with list of C++ files contained in the list of provided directories.
@@ -33,7 +20,7 @@ include(CMakeParseArguments)
 # 
 # .. code-block:: cmake
 #
-#   mchbuild_add_custom_dummy_target(NAME DIRECTORIES)
+#   yoda_add_custom_dummy_target(NAME DIRECTORIES)
 #
 # * Input arguments:
 #
@@ -42,7 +29,7 @@ include(CMakeParseArguments)
 #  ``DIRECTORIES:STRING``
 #    List of directories that contain the source files
 #
-function(mchbuild_add_custom_dummy_target)
+function(yoda_add_custom_dummy_target)
   # Parse arguments
   set(options)
   set(one_value_args NAME)
