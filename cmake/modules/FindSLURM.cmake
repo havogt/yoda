@@ -9,7 +9,7 @@
 # .. _FindSLURM:
 #
 # FindSLURM
-# --------
+# ----------
 #
 # .. code-block:: cmake
 #

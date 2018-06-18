@@ -38,7 +38,7 @@
     <link rel="top" title="Dawn  documentation" href="../index.html"/>
         <link rel="up" title="Installation &amp; Use" href="../cmake-modules.html"/>
         <link rel="next" title="Findbash" href="Findbash.html"/>
-        <link rel="prev" title="FindLLVM" href="FindLLVM.html"/> 
+        <link rel="prev" title="FindSLURM" href="FindSLURM.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -97,83 +97,53 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="../cmake-modules.html#cmake-modules-reference">CMake Modules Reference</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="mchbuildAddCustomDummyTarget.html">mchbuild_add_custom_dummy_target</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mchbuildAddExecutable.html">mchbuild_add_executable</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mchbuildAddLibrary.html">mchbuild_add_library</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mchbuildAddTargetClangFormat.html">mchbuild_add_target_clang_format</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mchbuildAddTargetCleanAll.html">mchbuild_add_target_clean_all</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mchbuildAddUnittest.html">mchbuild_add_unittest</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mchbuildCMakeInit.html">mchbuild_cmake_init</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mchbuildCheckAndSetCXXFlag.html">mchbuild_check_and_set_cxx_flag</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mchbuildCheckCXXFlag.html">mchbuild_check_cxx_flag</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mchbuildCheckInSourceBuild.html">mchbuild_check_in_source_build</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mchbuildCheckRequiredVars.html">mchbuild_check_required_vars</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mchbuildCheckVarsAreDefined.html">mchbuild_check_vars_are_defined</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mchbuildCloneRepository.html">mchbuild_clone_repository</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mchbuildCombineLibraries.html">mchbuild_combine_libraries</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mchbuildConfigureFile.html">mchbuild_configure_file</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="mchbuildConfigureFile.html#example">Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cmake-modules.html#functions-macros">Functions &amp; Macros</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="yodaAddCustomDummyTarget.html">yoda_add_custom_dummy_target</a></li>
+<li class="toctree-l3"><a class="reference internal" href="yodaAddExecutable.html">yoda_add_executable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="yodaAddLibrary.html">yoda_add_library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="yodaAddTargetClangFormat.html">yoda_add_target_clang_format</a></li>
+<li class="toctree-l3"><a class="reference internal" href="yodaAddTargetCleanAll.html">yoda_add_target_clean_all</a></li>
+<li class="toctree-l3"><a class="reference internal" href="yodaAddUnittest.html">yoda_add_unittest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="yodaCheckAndSetCXXFlag.html">yoda_check_and_set_cxx_flag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="yodaCheckCXXFlag.html">yoda_check_cxx_flag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="yodaCheckInSourceBuild.html">yoda_check_in_source_build</a></li>
+<li class="toctree-l3"><a class="reference internal" href="yodaCheckRequiredVars.html">yoda_check_required_vars</a></li>
+<li class="toctree-l3"><a class="reference internal" href="yodaCheckVarsAreDefined.html">yoda_check_vars_are_defined</a></li>
+<li class="toctree-l3"><a class="reference internal" href="yodaCloneRepository.html">yoda_clone_repository</a></li>
+<li class="toctree-l3"><a class="reference internal" href="yodaCombineLibraries.html">yoda_combine_libraries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="yodaConfigureFile.html">yoda_configure_file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="yodaCreatePackageString.html">yoda_create_package_string</a></li>
+<li class="toctree-l3"><a class="reference internal" href="yodaEnableFullRPATH.html">yoda_enable_full_rpath</a></li>
+<li class="toctree-l3"><a class="reference internal" href="yodaExportOptions.html">yoda_export_options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="yodaExportPackage.html">yoda_export_package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="yodaFindPackage.html">yoda_find_package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="yodaFindPythonModule.html">yoda_find_python_module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="yodaGenerateCMakeScript.html">yoda_generate_cmake_script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="yodaGetArchitectureInfo.html">yoda_get_architecture_info</a></li>
+<li class="toctree-l3"><a class="reference internal" href="yodaGetCacheVariables.html">yoda_get_cache_variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="yodaGetCompilerInfo.html">msbuid_get_compiler_info</a></li>
+<li class="toctree-l3"><a class="reference internal" href="yodaGetGitHeadRevision.html">yoda_get_git_head_revision</a></li>
+<li class="toctree-l3"><a class="reference internal" href="yodaGetPlatformInfo.html">yoda_get_platform_info</a></li>
+<li class="toctree-l3"><a class="reference internal" href="yodaGetScriptDir.html">yoda_get_script_dir</a></li>
+<li class="toctree-l3"><a class="reference internal" href="yodaIncludeGuard.html">yoda_include_guard</a></li>
+<li class="toctree-l3"><a class="reference internal" href="yodaInit.html">yoda_init</a></li>
+<li class="toctree-l3"><a class="reference internal" href="yodaMakeStringPair.html">yoda_make_string_pair</a></li>
+<li class="toctree-l3"><a class="reference internal" href="yodaReportResult.html">yoda_report_result</a></li>
+<li class="toctree-l3"><a class="reference internal" href="yodaRequireArg.html">yoda_require_arg</a></li>
+<li class="toctree-l3"><a class="reference internal" href="yodaSetCXXStandard.html">yoda_set_cxx_standard</a></li>
+<li class="toctree-l3"><a class="reference internal" href="yodaSetDownloadDir.html">yoda_set_download_dir</a></li>
+<li class="toctree-l3"><a class="reference internal" href="yodaSetExternalProperties.html">yoda_set_external_properties</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="mchbuildCreatePackageString.html">mchbuild_create_package_string</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="mchbuildCreatePackageString.html#example">Example</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="mchbuildEnableFullRPATH.html">mchbuild_enable_full_rpath</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mchbuildExportOptions.html">mchbuild_export_options</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mchbuildExportPackage.html">mchbuild_export_package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mchbuildFindPackage.html">mchbuild_find_package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mchbuildFindPythonModule.html">mchbuild_find_python_module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mchbuildGenerateCMakeScript.html">mchbuild_generate_cmake_script</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mchbuildGetArchitectureInfo.html">mchbuild_get_architecture_info</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mchbuildGetCacheVariables.html">mchbuild_get_cache_variables</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mchbuildGetCompilerInfo.html">msbuid_get_compiler_info</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mchbuildGetGitHeadRevision.html">mchbuild_get_git_head_revision</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mchbuildGetPlatformInfo.html">mchbuild_get_platform_info</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mchbuildGetScriptDir.html">mchbuild_get_script_dir</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mchbuildIncludeGuard.html">mchbuild_include_guard</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mchbuildInit.html">mchbuild_init</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mchbuildMakeStringPair.html">mchbuild_make_string_pair</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="mchbuildMakeStringPair.html#example">Example</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="mchbuildReportResult.html">mchbuild_report_result</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mchbuildRequireArg.html">mchbuild_require_arg</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mchbuildSetCXXStandard.html">mchbuild_set_cxx_standard</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mchbuildSetDownloadDir.html">mchbuild_set_download_dir</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mchbuildSetExternalProperties.html">mchbuild_set_external_properties</a></li>
-<li class="toctree-l2"><a class="reference internal" href="FindClang.html">FindClang</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="FindClang.html#result-variables">Result Variables</a></li>
-<li class="toctree-l3"><a class="reference internal" href="FindClang.html#hints">Hints</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="FindGridTools.html">FindGridTools</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="FindGridTools.html#result-variables">Result Variables</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="FindLLVM.html">FindLLVM</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="FindLLVM.html#result-variables">Result Variables</a></li>
-<li class="toctree-l3"><a class="reference internal" href="FindLLVM.html#hints">Hints</a></li>
-</ul>
-</li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">FindSphinx</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#result-variables">Result Variables</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#hints">Hints</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="Findbash.html">Findbash</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="Findbash.html#result-variables">Result Variables</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Findbash.html#hints">Hints</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="Findccache.html">Findccache</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="Findccache.html#result-variables">Result Variables</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Findccache.html#hints">Hints</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="Findclang-format.html">Findclang-format</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="Findclang-format.html#result-variables">Result Variables</a></li>
-<li class="toctree-l3"><a class="reference internal" href="Findclang-format.html#hints">Hints</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../cmake-modules.html#modules">Modules</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="FindClang.html">FindClang</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FindGridTools.html">FindGridTools</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FindLLVM.html">FindLLVM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="FindSLURM.html">FindSLURM</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">FindSphinx</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Findbash.html">Findbash</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Findccache.html">Findccache</a></li>
+<li class="toctree-l3"><a class="reference internal" href="Findclang-format.html">Findclang-format</a></li>
 </ul>
 </li>
 </ul>
@@ -284,7 +254,7 @@
         <a href="Findbash.html" class="btn btn-neutral float-right" title="Findbash" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="FindLLVM.html" class="btn btn-neutral" title="FindLLVM" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="FindSLURM.html" class="btn btn-neutral" title="FindSLURM" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -24,7 +24,7 @@ CMake Modules Reference
 This section describes the CMake functionailty of MCHBuild.
 
 Functions & Macros
-******************
+-------------------
 
 Each function and macro uses a `snake-case <https://en.wikipedia.org/wiki/Snake_case>`_ identifier and is defined in a separate file using the corresponding `camel-case <https://en.wikipedia.org/wiki/Camel_case>`_ filename. For example, to use the function ``mchbuild_add_target_clean_all`` include the file ``mchbuildAddTargetCleanAll`` as follows.
 
@@ -41,56 +41,53 @@ List of all functions and macros
   /cmake-modules/External_Boost
   /cmake-modules/External_Clang
   /cmake-modules/External_GTClang
+  /cmake-modules/External_GridTools
   /cmake-modules/External_Protobuf
   /cmake-modules/External_dawn
-  /cmake-modules/External_gridtools
   /cmake-modules/External_gtclang
-  /cmake-modules/GTClangAllOptions
-  /cmake-modules/mchbuildAddCustomDummyTarget
-  /cmake-modules/mchbuildAddDependency
-  /cmake-modules/mchbuildAddExecutable
-  /cmake-modules/mchbuildAddLibrary
-  /cmake-modules/mchbuildAddOptionalDeps
-  /cmake-modules/mchbuildAddTargetClangFormat
-  /cmake-modules/mchbuildAddTargetCleanAll
-  /cmake-modules/mchbuildAddUnittest
-  /cmake-modules/mchbuildCMakeInit
-  /cmake-modules/mchbuildCheckAndSetCXXFlag
-  /cmake-modules/mchbuildCheckCXXFlag
-  /cmake-modules/mchbuildCheckInSourceBuild
-  /cmake-modules/mchbuildCheckRequiredVars
-  /cmake-modules/mchbuildCheckVarsAreDefined
-  /cmake-modules/mchbuildCloneRepository
-  /cmake-modules/mchbuildCombineLibraries
-  /cmake-modules/mchbuildConfigureFile
-  /cmake-modules/mchbuildCreatePackageString
-  /cmake-modules/mchbuildEnableFullRPATH
-  /cmake-modules/mchbuildExportOptions
-  /cmake-modules/mchbuildExportPackage
-  /cmake-modules/mchbuildFindPackage
-  /cmake-modules/mchbuildFindPythonModule
-  /cmake-modules/mchbuildGenerateCMakeScript
-  /cmake-modules/mchbuildGetArchitectureInfo
-  /cmake-modules/mchbuildGetCacheVariables
-  /cmake-modules/mchbuildGetCompilerInfo
-  /cmake-modules/mchbuildGetGitHeadRevision
-  /cmake-modules/mchbuildGetPlatformInfo
-  /cmake-modules/mchbuildGetScriptDir
-  /cmake-modules/mchbuildIncludeGuard
-  /cmake-modules/mchbuildInit
-  /cmake-modules/mchbuildMakeCMakeScript
-  /cmake-modules/mchbuildMakePackageInfo
-  /cmake-modules/mchbuildMakeStringPair
-  /cmake-modules/mchbuildReportResult
-  /cmake-modules/mchbuildRequireArg
-  /cmake-modules/mchbuildRequireOnlyOneOf
-  /cmake-modules/mchbuildSetCXXStandard
-  /cmake-modules/mchbuildSetDownloadDir
-  /cmake-modules/mchbuildSetExternalProperties
+  /cmake-modules/yodaAddCustomDummyTarget
+  /cmake-modules/yodaAddExecutable
+  /cmake-modules/yodaAddLibrary
+  /cmake-modules/yodaAddOptionalDeps
+  /cmake-modules/yodaAddTargetClangFormat
+  /cmake-modules/yodaAddTargetCleanAll
+  /cmake-modules/yodaAddUnittest
+  /cmake-modules/yodaCheckAndSetCXXFlag
+  /cmake-modules/yodaCheckCXXFlag
+  /cmake-modules/yodaCheckInSourceBuild
+  /cmake-modules/yodaCheckRequiredVars
+  /cmake-modules/yodaCheckVarsAreDefined
+  /cmake-modules/yodaCloneRepository
+  /cmake-modules/yodaCombineLibraries
+  /cmake-modules/yodaConfigureFile
+  /cmake-modules/yodaCreatePackageString
+  /cmake-modules/yodaEnableFullRPATH
+  /cmake-modules/yodaExportOptions
+  /cmake-modules/yodaExportPackage
+  /cmake-modules/yodaFindPackage
+  /cmake-modules/yodaFindPythonModule
+  /cmake-modules/yodaGenerateCMakeScript
+  /cmake-modules/yodaGetArchitectureInfo
+  /cmake-modules/yodaGetCacheVariables
+  /cmake-modules/yodaGetCompilerInfo
+  /cmake-modules/yodaGetGitHeadRevision
+  /cmake-modules/yodaGetPlatformInfo
+  /cmake-modules/yodaGetScriptDir
+  /cmake-modules/yodaIncludeGuard
+  /cmake-modules/yodaInit
+  /cmake-modules/yodaMakeCMakeScript
+  /cmake-modules/yodaMakePackageInfo
+  /cmake-modules/yodaMakeStringPair
+  /cmake-modules/yodaReportResult
+  /cmake-modules/yodaRequireArg
+  /cmake-modules/yodaRequireOnlyOneOf
+  /cmake-modules/yodaSetCXXStandard
+  /cmake-modules/yodaSetDownloadDir
+  /cmake-modules/yodaSetExternalProperties
 
 
 Modules
-*******
+--------
 
 Load settings for an external project via `find_package <https://cmake.org/cmake/help/v3.0/command/find_package.html>`_.
 
@@ -101,6 +98,7 @@ Load settings for an external project via `find_package <https://cmake.org/cmake
   /cmake-modules/FindClang
   /cmake-modules/FindGridTools
   /cmake-modules/FindLLVM
+  /cmake-modules/FindSLURM
   /cmake-modules/FindSphinx
   /cmake-modules/Findbash
   /cmake-modules/Findccache
