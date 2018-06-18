@@ -37,7 +37,7 @@
         <link rel="search" title="Search" href="search.html"/>
     <link rel="top" title="yoda  documentation" href="index.html"/>
         <link rel="next" title="&lt;no title&gt;" href="cmake-modules/External_Boost.html"/>
-        <link rel="prev" title="MCHBuild — A builder infrastructure for cmake projects" href="index.html"/> 
+        <link rel="prev" title="yoda — A builder infrastructure for cmake projects" href="index.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -226,9 +226,9 @@
 </div>
 <div class="section" id="user-manual">
 <h1>User Manual<a class="headerlink" href="#user-manual" title="Permalink to this headline">¶</a></h1>
-<p>MCHBuild is a cmake based library that provides ways to describe the dependencies of a project
+<p>yoda is a cmake based library that provides ways to describe the dependencies of a project
 and resolves and builds all the depencies with a single cmake configuration  and build step.
-MCHBuild provides a set of cmake macros and functions and requires the use of a convention on
+yoda provides a set of cmake macros and functions and requires the use of a convention on
 how to write cmake project for all the projects in the dependency chain (except for the external
 dependencies).</p>
 <p>We will use the following figure to show how to build the dependency chain shown in the picture:</p>
@@ -237,7 +237,7 @@ dependencies).</p>
 <p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">Example of dependency chain of packages.</span></p>
 </div>
 <p>In the example we assume <code class="docutils literal"><span class="pre">packA</span></code>, <code class="docutils literal"><span class="pre">packB</span></code>, <code class="docutils literal"><span class="pre">packC</span></code> are software packages of our organization
-where we will directly use MCHBuild from the cmake configuration of the projects, while
+where we will directly use yoda from the cmake configuration of the projects, while
 <code class="docutils literal"><span class="pre">packExt1</span></code> and <code class="docutils literal"><span class="pre">packExt2</span></code> are external packages where we can not modify the configuration &amp; installation
 infrastructure, and possibly could not make use of cmake.</p>
 <div class="section" id="basic-cmakelists-txt">
@@ -252,7 +252,7 @@ cmake .. -DPACKB_ROOT<span class="o">=</span>&lt;packb_dir&gt; -DPACKC_ROOT<span
 </div>
 <div class="section" id="setup-a-cmake-bundle">
 <h2>Setup a cmake bundle<a class="headerlink" href="#setup-a-cmake-bundle" title="Permalink to this headline">¶</a></h2>
-<p>Using MCHBuild will require creating an additional cmake project file, called a bundle, inside each project.
+<p>Using yoda will require creating an additional cmake project file, called a bundle, inside each project.
 The bundle file
 will define all the dependent packages one by one, and at the end of the bundle, it will add the root CMakeLists.txt
 of the project as yet another external project of the bundle. All the dependent project
@@ -261,44 +261,44 @@ of the project as yet another external project of the bundle. All the dependent 
 <code class="docutils literal"><span class="pre">&lt;project&gt;/bundle/CMakeLists.txt</span></code></p>
 <p>The bundle file should contain the following cmake blocks:</p>
 <ul class="simple">
-<li>Locally clone the MCHBuild package. In order to do that there is a cmake macro in
-mchbuild that helps cloning git repositories. Copy manually the macro <code class="docutils literal"><span class="pre">mchbuildCloneRepository</span></code>
-(from the mchbuild repository) into the current package and use it from the bundle CMakeLists.txt
-to clone mchbuild</li>
+<li>Locally clone the yoda package. In order to do that there is a cmake macro in
+yoda that helps cloning git repositories. Copy manually the macro <code class="docutils literal"><span class="pre">yodaCloneRepository</span></code>
+(from the yoda repository) into the current package and use it from the bundle CMakeLists.txt
+to clone yoda</li>
 </ul>
-<div class="highlight-cmake"><div class="highlight"><pre><span class="nb">include</span><span class="p">(</span><span class="s">mchbuildCloneRepository</span><span class="p">)</span>
+<div class="highlight-cmake"><div class="highlight"><pre><span class="nb">include</span><span class="p">(</span><span class="s">yodaCloneRepository</span><span class="p">)</span>
 
-<span class="nb">set</span><span class="p">(</span><span class="s">PACKA_MCHBUILD_GIT_URL</span> <span class="s2">&quot;https:///github.com/Meteoswiss-APN/mchbuild.git&quot;</span> <span class="s">CACHE</span> <span class="s">PATH</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
-<span class="nb">set</span><span class="p">(</span><span class="s">PACKA_MCHBUILD_GIT_BRANCH</span> <span class="s2">&quot;master&quot;</span> <span class="s">CACHE</span> <span class="s">STRING</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
-<span class="nb">mchbuild_clone_repository</span><span class="p">(</span><span class="s">NAME</span> <span class="s">mchbuild</span> <span class="s">URL</span> <span class="o">${</span><span class="nv">PACKA_MCHBUILD_GIT_URL</span><span class="o">}</span> <span class="s">BRANCH</span> <span class="o">${</span><span class="nv">PACKA_MCHBUILD_GIT_BRANCH</span><span class="o">}</span> <span class="s">SOURCE_DIR</span> <span class="s">PACKA_MCHBUILD_SOURCE_DIR</span> <span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">PACKA_YODA_GIT_URL</span> <span class="s2">&quot;https:///github.com/Meteoswiss-APN/yoda.git&quot;</span> <span class="s">CACHE</span> <span class="s">PATH</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">PACKA_YODA_GIT_BRANCH</span> <span class="s2">&quot;master&quot;</span> <span class="s">CACHE</span> <span class="s">STRING</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="nb">yoda_clone_repository</span><span class="p">(</span><span class="s">NAME</span> <span class="s">yoda</span> <span class="s">URL</span> <span class="o">${</span><span class="nv">PACKA_YODA_GIT_URL</span><span class="o">}</span> <span class="s">BRANCH</span> <span class="o">${</span><span class="nv">PACKA_YODA_GIT_BRANCH</span><span class="o">}</span> <span class="s">SOURCE_DIR</span> <span class="s">PACKA_YODA_SOURCE_DIR</span> <span class="p">)</span>
 </pre></div>
 </div>
 <ul>
-<li><p class="first">We can add dependencies (other mchbuild projects) using the mchbuild_find_package:</p>
-<div class="highlight-cmake"><div class="highlight"><pre><span class="nb">mchbuild_find_package</span><span class="p">(</span>
+<li><p class="first">We can add dependencies (other yoda projects) using the yoda_find_package:</p>
+<div class="highlight-cmake"><div class="highlight"><pre><span class="nb">yoda_find_package</span><span class="p">(</span>
   <span class="s">PACKAGE</span> <span class="s">packB</span>
   <span class="s">REQUIRED_VAR</span> <span class="s">packB_DIR</span>
   <span class="s">DEPENDS</span> <span class="s2">&quot;packext1&quot;</span> <span class="s2">&quot;packext2&quot;</span>
   <span class="s">ADDITIONAL</span>
     <span class="s">GIT_REPOSITORY</span> <span class="s2">&quot;https://github.com/Meteoswiss-APN/packB.git&quot;</span>
     <span class="s">GIT_TAG</span> <span class="s2">&quot;develop&quot;</span>
-    <span class="s">MCHBUILD_ROOT</span> <span class="s2">&quot;${PACKA_MCHBUILD_SOURCE_DIR}&quot;</span>
+    <span class="s">YODA_ROOT</span> <span class="s2">&quot;${PACKA_YODA_SOURCE_DIR}&quot;</span>
     <span class="s">CMAKE_ARGS</span> <span class="s">-DCMAKE_INSTALL_PREFIX:PATH=&lt;INSTALL_DIR&gt;</span> <span class="s">...</span>
 <span class="p">)</span>
 </pre></div>
 </div>
-<p>Notice that mchbuild will require that the dependent package <code class="docutils literal"><span class="pre">packB</span></code> contains a bundle cmake project,
+<p>Notice that yoda will require that the dependent package <code class="docutils literal"><span class="pre">packB</span></code> contains a bundle cmake project,
 but not for the external dependencies <code class="docutils literal"><span class="pre">packExt1</span></code> and <code class="docutils literal"><span class="pre">packExt2</span></code>.
 The <code class="docutils literal"><span class="pre">REQUIRED_VAR</span></code> will require the external project finder to set properly the <code class="docutils literal"><span class="pre">packB_DIR</span></code> variable, pointing to
 the external project directory that contains the corresponding cmake Config file.</p>
 </li>
-<li><p class="first">We can also add external dependencies using the mchbuild_find_package. See for example how to add dependency on <code class="docutils literal"><span class="pre">packExt1</span></code></p>
-<div class="highlight-cmake"><div class="highlight"><pre><span class="nb">mchbuild_find_package</span><span class="p">(</span>
+<li><p class="first">We can also add external dependencies using the yoda_find_package. See for example how to add dependency on <code class="docutils literal"><span class="pre">packExt1</span></code></p>
+<div class="highlight-cmake"><div class="highlight"><pre><span class="nb">yoda_find_package</span><span class="p">(</span>
   <span class="s">PACKAGE</span> <span class="s">packExt1</span>
   <span class="s">COMPONENTS</span> <span class="s2">&quot;comp1&quot;</span> <span class="s2">&quot;comp2&quot;</span>
   <span class="s">REQUIRED_VARS</span> <span class="s">PACKEXT1_ROOT</span>
   <span class="s">ADDITIONAL</span>
-    <span class="s">DOWNLOAD_DIR</span> <span class="o">${</span><span class="nv">MCHBUILD_DOWNLOAD_DIR</span><span class="o">}</span>
+    <span class="s">DOWNLOAD_DIR</span> <span class="o">${</span><span class="nv">YODA_DOWNLOAD_DIR</span><span class="o">}</span>
     <span class="s">URL</span> <span class="s2">&quot;http://sourceforge.net/projects/packExt1&quot;</span>
     <span class="s">URL_MD5</span> <span class="s2">&quot;7b493c08bc9557bbde7e29091f28b605&quot;</span>
     <span class="s">BUILD_VERSION</span> <span class="s">1.58.0</span>
@@ -307,21 +307,21 @@ the external project directory that contains the corresponding cmake Config file
 </div>
 </li>
 <li><p class="first">Add the package itself, i.e. the root CMakeLists.txt (from the CMakeLists.txt in the bundle directory) as another external dependency</p>
-<div class="highlight-cmake"><div class="highlight"><pre><span class="nb">mchbuild_find_package</span><span class="p">(</span>
+<div class="highlight-cmake"><div class="highlight"><pre><span class="nb">yoda_find_package</span><span class="p">(</span>
   <span class="s">PACKAGE</span> <span class="s">packA</span>
   <span class="s">FORWARD_VARS</span>
     <span class="s">BINARY_DIR</span> <span class="s">packA_binary_dir</span>
   <span class="s">DEPENDS</span> <span class="s2">&quot;packa&quot;</span> <span class="s2">&quot;packc&quot;</span>
   <span class="s">ADDITIONAL</span>
     <span class="s">SOURCE_DIR</span> <span class="s2">&quot;${CMAKE_SOURCE_DIR}/../&quot;</span>
-    <span class="s">MCHBUILD_ROOT</span> <span class="s2">&quot;${GTCLANG_MCHBUILD_SOURCE_DIR}&quot;</span>
+    <span class="s">YODA_ROOT</span> <span class="s2">&quot;${GTCLANG_YODA_SOURCE_DIR}&quot;</span>
     <span class="s">CMAKE_ARGS</span> <span class="s">-DpackB_DIR=</span><span class="o">${</span><span class="nv">packB_DIR</span><span class="o">}</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 <p>Since we are adding the root CMakeLists.txt of this project, packA, as a cmake external package,
 instead of specifying a GIT url, here we simply specify the source directory that contains the root CMakeLists.txt</p>
-<p>Notice that here we use the cmake config directories obtained by previous calls to <code class="docutils literal"><span class="pre">mchbuild_find_package</span></code>
+<p>Notice that here we use the cmake config directories obtained by previous calls to <code class="docutils literal"><span class="pre">yoda_find_package</span></code>
 to set the cmake paths in  <code class="docutils literal"><span class="pre">CMAKE_ARGS</span></code></p>
 </li>
 <li><p class="first">The root CMakeLists.txt will contain some tests, but the bundle cmake project still does not contain any test.
@@ -338,7 +338,7 @@ project</p>
 </div>
 <div class="section" id="the-external-project-files">
 <h2>The external project files<a class="headerlink" href="#the-external-project-files" title="Permalink to this headline">¶</a></h2>
-<p>Each cmake call to <code class="docutils literal"><span class="pre">mchbuild_find_package</span></code> will first try to find a cmake config file of the project, in the cmake search paths
+<p>Each cmake call to <code class="docutils literal"><span class="pre">yoda_find_package</span></code> will first try to find a cmake config file of the project, in the cmake search paths
 (<code class="docutils literal"><span class="pre">CMAKE_MODULE_PATH```or</span> <span class="pre">user</span> <span class="pre">provided</span> <span class="pre">``-Dpack_DIR=&lt;&gt;</span></code> paths).
 If the package is not found, it will then try to clone or download the package and compile it before continue processing the rest of
 the bundle.
@@ -350,8 +350,8 @@ that contains the cmake functionality to download and compile the package.</p>
 <li><p class="first">First of all notice that each <code class="docutils literal"><span class="pre">External_&lt;pack&gt;.cmake</span></code> should define a target, used later in the bundle files to describe the
 dependencies of each package. The convention is that the target is the name of the package all letter lower case.</p>
 </li>
-<li><p class="first">Get the source,build and install directories for the compilation of the dependent project using the following mchbuild macro</p>
-<div class="highlight-cmake"><div class="highlight"><pre><span class="nb">mchbuild_set_external_properties</span><span class="p">(</span><span class="s">NAME</span> <span class="s2">&quot;packa&quot;</span>
+<li><p class="first">Get the source,build and install directories for the compilation of the dependent project using the following yoda macro</p>
+<div class="highlight-cmake"><div class="highlight"><pre><span class="nb">yoda_set_external_properties</span><span class="p">(</span><span class="s">NAME</span> <span class="s2">&quot;packa&quot;</span>
   <span class="s">INSTALL_DIR</span> <span class="s">install_dir</span>
   <span class="s">SOURCE_DIR</span> <span class="s">source_dir</span>
   <span class="s">BINARY_DIR</span> <span class="s">binary_dir</span>
@@ -380,7 +380,7 @@ indicating the source directory, we need to possibly add the external project fo
 </pre></div>
 </div>
 </li>
-<li><p class="first">Set accordingly all the <code class="docutils literal"><span class="pre">REQUIRED_VARS</span></code> and <code class="docutils literal"><span class="pre">FORWARD_VARS</span></code> passed to <code class="docutils literal"><span class="pre">mchbuild_find_package</span></code>. For example</p>
+<li><p class="first">Set accordingly all the <code class="docutils literal"><span class="pre">REQUIRED_VARS</span></code> and <code class="docutils literal"><span class="pre">FORWARD_VARS</span></code> passed to <code class="docutils literal"><span class="pre">yoda_find_package</span></code>. For example</p>
 <div class="highlight-cmake"><div class="highlight"><pre><span class="nb">set</span><span class="p">(</span><span class="s">packA_DIR</span> <span class="s2">&quot;${binary_dir}/prefix/packA/cmake&quot;</span> <span class="s">CACHE</span> <span class="s">INTERNAL</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -470,7 +470,7 @@ indicating the source directory, we need to possibly add the external project fo
         <a href="cmake-modules/External_Boost.html" class="btn btn-neutral float-right" title="&lt;no title&gt;" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral" title="MCHBuild — A builder infrastructure for cmake projects" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral" title="yoda — A builder infrastructure for cmake projects" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -1,9 +1,9 @@
 User Manual
 ===================
 
-MCHBuild is a cmake based library that provides ways to describe the dependencies of a project 
+yoda is a cmake based library that provides ways to describe the dependencies of a project 
 and resolves and builds all the depencies with a single cmake configuration  and build step.
-MCHBuild provides a set of cmake macros and functions and requires the use of a convention on 
+yoda provides a set of cmake macros and functions and requires the use of a convention on 
 how to write cmake project for all the projects in the dependency chain (except for the external 
 dependencies). 
 
@@ -14,7 +14,7 @@ We will use the following figure to show how to build the dependency chain shown
   Example of dependency chain of packages.  
 
 In the example we assume ``packA``, ``packB``, ``packC`` are software packages of our organization
-where we will directly use MCHBuild from the cmake configuration of the projects, while
+where we will directly use yoda from the cmake configuration of the projects, while
 ``packExt1`` and ``packExt2`` are external packages where we can not modify the configuration & installation
 infrastructure, and possibly could not make use of cmake.
 
@@ -35,7 +35,7 @@ Like that, configuring ``packA`` using will require passing the dependent instal
 Setup a cmake bundle
 ----------------------
 
-Using MCHBuild will require creating an additional cmake project file, called a bundle, inside each project. 
+Using yoda will require creating an additional cmake project file, called a bundle, inside each project. 
 The bundle file
 will define all the dependent packages one by one, and at the end of the bundle, it will add the root CMakeLists.txt
 of the project as yet another external project of the bundle. All the dependent project
@@ -47,49 +47,49 @@ The configuration of the bundle will be placed in
 
 The bundle file should contain the following cmake blocks:
 
-* Locally clone the MCHBuild package. In order to do that there is a cmake macro in 
-  mchbuild that helps cloning git repositories. Copy manually the macro ``mchbuildCloneRepository``
-  (from the mchbuild repository) into the current package and use it from the bundle CMakeLists.txt 
-  to clone mchbuild
+* Locally clone the yoda package. In order to do that there is a cmake macro in 
+  yoda that helps cloning git repositories. Copy manually the macro ``yodaCloneRepository``
+  (from the yoda repository) into the current package and use it from the bundle CMakeLists.txt 
+  to clone yoda
 
 .. code-block:: cmake
 
-  include(mchbuildCloneRepository)
+  include(yodaCloneRepository)
 
-  set(PACKA_MCHBUILD_GIT_URL "https:///github.com/Meteoswiss-APN/mchbuild.git" CACHE PATH "")
-  set(PACKA_MCHBUILD_GIT_BRANCH "master" CACHE STRING "")
-  mchbuild_clone_repository(NAME mchbuild URL ${PACKA_MCHBUILD_GIT_URL} BRANCH ${PACKA_MCHBUILD_GIT_BRANCH} SOURCE_DIR PACKA_MCHBUILD_SOURCE_DIR )
+  set(PACKA_YODA_GIT_URL "https:///github.com/Meteoswiss-APN/yoda.git" CACHE PATH "")
+  set(PACKA_YODA_GIT_BRANCH "master" CACHE STRING "")
+  yoda_clone_repository(NAME yoda URL ${PACKA_YODA_GIT_URL} BRANCH ${PACKA_YODA_GIT_BRANCH} SOURCE_DIR PACKA_YODA_SOURCE_DIR )
 
-* We can add dependencies (other mchbuild projects) using the mchbuild_find_package:
+* We can add dependencies (other yoda projects) using the yoda_find_package:
 
   .. code-block:: cmake
 
-    mchbuild_find_package(
+    yoda_find_package(
       PACKAGE packB
       REQUIRED_VAR packB_DIR
       DEPENDS "packext1" "packext2"
       ADDITIONAL
         GIT_REPOSITORY "https://github.com/Meteoswiss-APN/packB.git"
         GIT_TAG "develop" 
-        MCHBUILD_ROOT "${PACKA_MCHBUILD_SOURCE_DIR}"
+        YODA_ROOT "${PACKA_YODA_SOURCE_DIR}"
         CMAKE_ARGS -DCMAKE_INSTALL_PREFIX:PATH=<INSTALL_DIR> ...
     )
   
-  Notice that mchbuild will require that the dependent package ``packB`` contains a bundle cmake project, 
+  Notice that yoda will require that the dependent package ``packB`` contains a bundle cmake project, 
   but not for the external dependencies ``packExt1`` and ``packExt2``.
   The ``REQUIRED_VAR`` will require the external project finder to set properly the ``packB_DIR`` variable, pointing to 
   the external project directory that contains the corresponding cmake Config file. 
 
-* We can also add external dependencies using the mchbuild_find_package. See for example how to add dependency on ``packExt1``
+* We can also add external dependencies using the yoda_find_package. See for example how to add dependency on ``packExt1``
 
   .. code-block:: cmake
 
-    mchbuild_find_package(
+    yoda_find_package(
       PACKAGE packExt1
       COMPONENTS "comp1" "comp2"
       REQUIRED_VARS PACKEXT1_ROOT
       ADDITIONAL
-        DOWNLOAD_DIR ${MCHBUILD_DOWNLOAD_DIR}
+        DOWNLOAD_DIR ${YODA_DOWNLOAD_DIR}
         URL "http://sourceforge.net/projects/packExt1"
         URL_MD5 "7b493c08bc9557bbde7e29091f28b605" 
         BUILD_VERSION 1.58.0
@@ -99,21 +99,21 @@ The bundle file should contain the following cmake blocks:
 
   .. code-block:: cmake
 
-    mchbuild_find_package(
+    yoda_find_package(
       PACKAGE packA
       FORWARD_VARS 
         BINARY_DIR packA_binary_dir
       DEPENDS "packa" "packc"
       ADDITIONAL
         SOURCE_DIR "${CMAKE_SOURCE_DIR}/../"
-        MCHBUILD_ROOT "${GTCLANG_MCHBUILD_SOURCE_DIR}"
+        YODA_ROOT "${GTCLANG_YODA_SOURCE_DIR}"
         CMAKE_ARGS -DpackB_DIR=${packB_DIR}
     )
  
   Since we are adding the root CMakeLists.txt of this project, packA, as a cmake external package, 
   instead of specifying a GIT url, here we simply specify the source directory that contains the root CMakeLists.txt
  
-  Notice that here we use the cmake config directories obtained by previous calls to ``mchbuild_find_package`` 
+  Notice that here we use the cmake config directories obtained by previous calls to ``yoda_find_package`` 
   to set the cmake paths in  ``CMAKE_ARGS``
 
 * The root CMakeLists.txt will contain some tests, but the bundle cmake project still does not contain any test. 
@@ -132,7 +132,7 @@ The bundle file should contain the following cmake blocks:
 The external project files
 -----------------------------
 
-Each cmake call to ``mchbuild_find_package`` will first try to find a cmake config file of the project, in the cmake search paths
+Each cmake call to ``yoda_find_package`` will first try to find a cmake config file of the project, in the cmake search paths
 (``CMAKE_MODULE_PATH```or user provided ``-Dpack_DIR=<>`` paths). 
 If the package is not found, it will then try to clone or download the package and compile it before continue processing the rest of 
 the bundle.
@@ -145,11 +145,11 @@ In the following we describe the main components of a ``External_<pack>.cmake``:
 * First of all notice that each ``External_<pack>.cmake`` should define a target, used later in the bundle files to describe the 
   dependencies of each package. The convention is that the target is the name of the package all letter lower case.
 
-* Get the source,build and install directories for the compilation of the dependent project using the following mchbuild macro
+* Get the source,build and install directories for the compilation of the dependent project using the following yoda macro
 
   .. code-block:: cmake
 
-      mchbuild_set_external_properties(NAME "packa" 
+      yoda_set_external_properties(NAME "packa" 
         INSTALL_DIR install_dir 
         SOURCE_DIR source_dir
         BINARY_DIR binary_dir
@@ -177,7 +177,7 @@ In the following we describe the main components of a ``External_<pack>.cmake``:
     )
     endif()
 
-* Set accordingly all the ``REQUIRED_VARS`` and ``FORWARD_VARS`` passed to ``mchbuild_find_package``. For example
+* Set accordingly all the ``REQUIRED_VARS`` and ``FORWARD_VARS`` passed to ``yoda_find_package``. For example
 
   .. code-block:: cmake
 
