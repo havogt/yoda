@@ -55,7 +55,7 @@ else()
   # find llvm-config, prefer the one with a version suffix, e.g. llvm-config-3.5
   # note: FreeBSD installs llvm-config as llvm-config35 and so on
   # note: on some distributions, only 'llvm-config' is shipped, so let's always try to fallback on that
-  string(REPLACE "." "" LLVM_FIND_VERSION_CONCAT ${LLVM_FIND_VERSION})
+  string(REPLACE "." "" LLVM_FIND_VERSION_CONCAT "${LLVM_FIND_VERSION}")
   find_program(LLVM_CONFIG_EXECUTABLE NAMES llvm-config-${LLVM_FIND_VERSION} llvm-config${LLVM_FIND_VERSION_CONCAT} llvm-config DOC "llvm-config executable")
 
   # other distributions don't ship llvm-config, but only some llvm-config-VERSION binary
@@ -125,7 +125,7 @@ if (LLVM_FOUND)
     OUTPUT_VARIABLE _llvmLibs
     OUTPUT_STRIP_TRAILING_WHITESPACE
   )
-  string(REPLACE " " ";" _llvmLibs ${_llvmLibs})
+  string(REPLACE " " ";" _llvmLibs "${_llvmLibs}")
   foreach(lib ${_llvmLibs})
     list(APPEND LLVM_LIBS "${lib}")
   endforeach()
@@ -135,7 +135,7 @@ if (LLVM_FOUND)
     OUTPUT_VARIABLE _llvmSystemLibs
     OUTPUT_STRIP_TRAILING_WHITESPACE
   )
-  string(REPLACE " " ";" _llvmSystemLibs ${_llvmSystemLibs})
+  string(REPLACE " " ";" _llvmSystemLibs "${_llvmSystemLibs}")
   foreach(lib ${_llvmSystemLibs})
     list(APPEND LLVM_SYSTEM_LIBS "${lib}")
   endforeach()
