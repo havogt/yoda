@@ -40,9 +40,9 @@ function(yoda_create_library)
   # Parse arguments
   #
   set(options NATIVE_PYTHON_LIB)
-  set(oneValueArgs TARGET)
+  set(oneValueArgs TARGET TARGET_GROUP INSTALL_DESTINATION TARGET_NAMESPACE)
   set(multiValueArgs OBJECTS LIBRARIES DEPENDS SOURCES PUBLIC_BUILD_INCLUDES PUBLIC_INSTALL_INCLUDES 
-            INTERFACE_BUILD_INCLUDES INTERFACE_INSTALL_INCLUDES PRIVATE_BUILD_INCLUDES VERSION INSTALL_DESTINATION)
+            INTERFACE_BUILD_INCLUDES INTERFACE_INSTALL_INCLUDES PRIVATE_BUILD_INCLUDES VERSION)
   cmake_parse_arguments(ARG "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
 
   yoda_require_arg("TARGET" ${ARG_TARGET})
@@ -136,12 +136,21 @@ function(yoda_create_library)
     set_target_properties(${target}Static PROPERTIES SUFFIX ".so")
   endif()
 
+  set(opt_arg)
+  if(ARG_TARGET_GROUP) 
+    set(opt_arg ${opt_arg} TARGET_GROUP ${ARG_TARGET_GROUP})
+  endif()
+  if(ARG_TARGET_NAMESPACE)
+    set(opt_arg ${opt_arg} TARGET_NAMESPACE ${ARG_TARGET_NAMESPACE})
+  endif()
+
   yoda_combine_libraries(
     NAME ${target}
     OBJECTS ${target}Objects ${objects}
     INSTALL_DESTINATION ${install_destination} 
     VERSION ${version}
     DEPENDS ${libraries} ${depends}
+    ${opt_arg}
   )
 
   set(target_libs ${target}Static)
