@@ -84,10 +84,6 @@ function(yoda_create_library)
     OBJECT
   )
 
-  if(SERIALBOX_VERBOSE_WARNINGS)
-    set_target_properties(${ARG_TARGET}Objects PROPERTIES COMPILE_FLAGS -Wall)
-  endif(SERIALBOX_VERBOSE_WARNINGS)
-
   if(NOT("${ARG_OBJECTS}" STREQUAL ""))
     set(OBJECT_SOURCES)
     foreach(object ${ARG_OBJECTS})
