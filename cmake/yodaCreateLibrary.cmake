@@ -65,19 +65,6 @@ function(yoda_create_library)
   yoda_require_arg("TARGET" ${ARG_TARGET})
   yoda_require_arg("VERSION" ${ARG_VERSION})
 
-  set(nativePythonLibrary ${ARG_NATIVE_PYTHON_LIB})
-  set(target ${ARG_TARGET})
-  set(objects ${ARG_OBJECTS})
-  set(addSymlinksTo ${ARG_SYMLINKS})
-  set(libraries ${ARG_LIBRARIES})
-  set(sources ${ARG_SOURCES})
-  set(publicBuildIncludes ${ARG_PUBLIC_BUILD_INCLUDES})
-  set(publicInstallIncludes ${ARG_PUBLIC_INSTALL_INCLUDES})
-  set(interfaceBuildIncludes ${ARG_INTERFACE_BUILD_INCLUDES})
-  set(interfaceInstallIncludes ${ARG_INTERFACE_INSTALL_INCLUDES})
-  set(privateBuildIncludes ${ARG_PRIVATE_BUILD_INCLUDES})
-  set(depends ${ARG_DEPENDS})
-  set(version ${ARG_VERSION})
   if(ARG_INSTALL_DESTINATION)
     set(install_destination ${ARG_INSTALL_DESTINATION)
   else()
@@ -92,60 +79,60 @@ function(yoda_create_library)
   # Add object library
   #
   yoda_add_library(
-    NAME ${target}
-    SOURCES ${SOURCES}
+    NAME ${ARG_TARGET}
+    SOURCES ${ARG_SOURCES}
     OBJECT
   )
 
   if(SERIALBOX_VERBOSE_WARNINGS)
-    set_target_properties(${target}Objects PROPERTIES COMPILE_FLAGS -Wall)
+    set_target_properties(${ARG_TARGET}Objects PROPERTIES COMPILE_FLAGS -Wall)
   endif(SERIALBOX_VERBOSE_WARNINGS)
 
-  if(NOT("${objects}" STREQUAL ""))
+  if(NOT("${ARG_OBJECTS}" STREQUAL ""))
     set(OBJECT_SOURCES)
-    foreach(object ${objects})
+    foreach(object ${ARG_OBJECTS})
       list(APPEND OBJECT_SOURCES $<TARGET_OBJECTS:${object}>)
     endforeach()
   endif()
 
 
-  if(NOT("${publicBuildIncludes}" STREQUAL "") OR NOT("${publicInstallIncludes}" STREQUAL ""))
+  if(NOT("${ARG_PUBLIC_BUILD_INCLUDES}" STREQUAL "") OR NOT("${ARG_PUBLIC_INSTALL_INCLUDES}" STREQUAL ""))
     set(__include_paths PUBLIC)
-    foreach(inc_dir ${publicBuildIncludes})
+    foreach(inc_dir ${ARG_PUBLIC_BUILD_INCLUDES})
       if(${inc_dir} STREQUAL "SYSTEM")
         set(__include_paths SYSTEM PUBLIC) 
         continue()
       else()
         list(APPEND __include_paths $<BUILD_INTERFACE:${inc_dir}>)
-        target_include_directories(${target}Objects ${__include_paths})
+        target_include_directories(${ARG_TARGET}Objects ${__include_paths})
         set(__include_paths PUBLIC)
       endif()
     endforeach()
-    foreach(inc_dir ${publicInstallIncludes})
+    foreach(inc_dir ${ARG_PUBLIC_INSTALL_INCLUDES})
       set(__include_paths PUBLIC)
       if(${inc_dir} STREQUAL "SYSTEM")
         message(FATAL "SYSTEM keyword is not allowed in the PUBLIC_INSTALL_XXX")
       else()
         list(APPEND __include_paths $<INSTALL_INTERFACE:${inc_dir}>)
-        target_include_directories(${target}Objects ${__include_paths})
+        target_include_directories(${ARG_TARGET}Objects ${__include_paths})
       endif()
     endforeach()
 
     unset(__include_paths)
   endif()
 
-  if(NOT("${privateBuildIncludes}" STREQUAL ""))
-    target_include_directories(${target}Objects PRIVATE ${privateBuildIncludes} )
+  if(NOT("${ARG_PRIVATE_BUILD_INCLUDES}" STREQUAL ""))
+    target_include_directories(${ARG_TARGET}Objects PRIVATE ${ARG_PRIVATE_BUILD_INCLUDES} )
   endif()
 
   ## Propagate the interface include directories of dependencies
   unset(__include_paths)
-  foreach(lib ${depends})
+  foreach(lib ${ARG_DEPENDS})
     list(APPEND __include_paths $<BUILD_INTERFACE:$<TARGET_PROPERTY:${lib},INTERFACE_INCLUDE_DIRECTORIES>>)
     list(APPEND __include_paths $<INSTALL_INTERFACE:$<TARGET_PROPERTY:${lib},INTERFACE_INCLUDE_DIRECTORIES>>)
   endforeach()
 
-  target_include_directories(${target}Objects PUBLIC ${__include_paths} )
+  target_include_directories(${ARG_TARGET}Objects PUBLIC ${__include_paths} )
   unset(__include_paths)
 
   set(opt_arg)
@@ -157,17 +144,17 @@ function(yoda_create_library)
   endif()
 
   yoda_combine_libraries(
-    NAME ${target}
-    OBJECTS ${target}Objects ${objects}
+    NAME ${ARG_TARGET}
+    OBJECTS ${ARG_TARGET}Objects ${ARG_OBJECTS}
     INSTALL_DESTINATION ${install_destination} 
-    VERSION ${version}
-    DEPENDS ${libraries} ${depends}
+    VERSION ${ARG_VERSION}
+    DEPENDS ${ARG_LIBRARIES} ${ARG_DEPENDS}
     ${opt_arg}
   )
 
-  set(target_libs ${target}Static)
+  set(target_libs ${ARG_TARGET}Static)
   if(BUILD_SHARED_LIBS) 
-    set(target_libs ${target_libs} ${target}Shared)
+    set(target_libs ${target_libs} ${ARG_TARGET}Shared)
   endif(BUILD_SHARED_LIBS)
 
 
@@ -175,9 +162,9 @@ function(yoda_create_library)
   ## since the object files are already compiled, but we need to propate the include directories as interface
   foreach(target_lib ${target_libs})
 
-    if(NOT("${publicBuildIncludes}" STREQUAL "") OR NOT("${publicInstallIncludes}" STREQUAL ""))
+    if(NOT("${ARG_PUBLIC_BUILD_INCLUDES}" STREQUAL "") OR NOT("${ARG_PUBLIC_INSTALL_INCLUDES}" STREQUAL ""))
       set(__include_paths INTERFACE)
-      foreach(inc_dir ${publicBuildIncludes})
+      foreach(inc_dir ${ARG_PUBLIC_BUILD_INCLUDES})
         if(${inc_dir} STREQUAL "SYSTEM")
           set(__include_paths SYSTEM INTERFACE) 
           continue()
@@ -187,7 +174,7 @@ function(yoda_create_library)
           set(__include_paths INTERFACE)
         endif()
       endforeach()
-      foreach(inc_dir ${publicInstallIncludes})
+      foreach(inc_dir ${ARG_PUBLIC_INSTALL_INCLUDES})
         set(__include_paths INTERFACE)
         if(${inc_dir} STREQUAL "SYSTEM")
           message(FATAL "SYSTEM keyword is not allowed in the PUBLIC_INSTALL_XXX")
@@ -200,13 +187,13 @@ function(yoda_create_library)
       unset(__include_paths)
     endif()
 
-    if(NOT("${interfaceBuildIncludes}" STREQUAL "") OR NOT("${interfaceInstallIncludes}" STREQUAL ""))
+    if(NOT("${ARG_INTERFACE_BUILD_INCLUDES}" STREQUAL "") OR NOT("${ARG_INTERFACE_INSTALL_INCLUDES}" STREQUAL ""))
       set(__include_paths INTERFACE)
-      if(NOT("${interfaceBuildIncludes}" STREQUAL ""))
-        list(APPEND __include_paths $<BUILD_INTERFACE:${interfaceBuildIncludes}>)
+      if(NOT("${ARG_INTERFACE_BUILD_INCLUDES}" STREQUAL ""))
+        list(APPEND __include_paths $<BUILD_INTERFACE:${ARG_INTERFACE_BUILD_INCLUDES}>)
       endif()
-      if(NOT("${interfaceInstallIncludes}" STREQUAL ""))
-        list(APPEND __include_paths $<INSTALL_INTERFACE:${interfaceInstallIncludes}>)
+      if(NOT("${ARG_INTERFACE_INSTALL_INCLUDES}" STREQUAL ""))
+        list(APPEND __include_paths $<INSTALL_INTERFACE:${ARG_INTERFACE_INSTALL_INCLUDES}>)
       endif()
       target_include_directories(${target_lib} ${__include_paths} )
       unset(__include_paths)
@@ -215,19 +202,13 @@ function(yoda_create_library)
 
 ## Propagate the interface include directories of dependencies
   unset(__include_paths)
-  foreach(lib ${depends})
+  foreach(lib ${ARG_DEPENDS})
     list(APPEND __include_paths $<BUILD_INTERFACE:$<TARGET_PROPERTY:${lib},INTERFACE_INCLUDE_DIRECTORIES>>)
     unset(__include_paths)
   endforeach()
 
-  target_include_directories(${target}Static INTERFACE ${__include_paths} )
+  target_include_directories(${ARG_TARGET}Static INTERFACE ${__include_paths} )
   unset(__include_paths)
 
-##TODO propagate also includes for Build Lib
-
-  if(nativePythonLibrary AND BUILD_SHARED_LIBS)
-    set_target_properties(${target}Shared PROPERTIES PREFIX "")
-    set_target_properties(${target}Shared PROPERTIES SUFFIX ".so")
-  endif()
 endfunction(yoda_create_library)
 
