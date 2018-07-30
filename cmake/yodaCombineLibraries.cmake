@@ -22,7 +22,8 @@ include(yodaRequireArg)
 #
 # .. code-block:: cmake
 #
-#   yoda_combine_libraries(NAME OBJECTS DEPENDS)
+#   yoda_combine_libraries(NAME OBJECTS DEPENDS INSTALL_DESTINATION VERSION
+#           TARGET_GROUP TARGET_NAMESPACE DEPENDS)
 #
 # ``NAME``
 #   Name of the library.
@@ -30,12 +31,15 @@ include(yodaRequireArg)
 #   Object libraries to combine (see :ref:`yoda_add_library`).
 # ``INSTALL_DESTINATION``
 #   Destition (relative to ``CMAKE_INSTALL_PREFIX``) to install the libraries.
+# ``VERSION``
+#   Version of the library
+# ``TARGET_GROUP:STRING`` [optional]
+#    Target group where the target will be added. The target will be exported in file
+#    <INSTALL_DESTINATION>/<TARGET_GROUP>.cmake
+# ``TARGET_NAMESPACE:STRING`` [optional]
+#    Namespace where the target will be generated
 # ``DEPENDS`` [optional]
 #   List of external libraries and/or CMake targets treated as dependencies of the library.
-# ``TARGET_GROUP`` [optional]
-#   Group where target will be exported
-# ``TARGET_NAMESPACE`` [optional]
-#   Namespace where the target will be installed
 #
 function(yoda_combine_libraries)
   set(options)

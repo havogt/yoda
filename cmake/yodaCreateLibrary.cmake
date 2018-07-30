@@ -10,30 +10,47 @@ yoda_include_guard()
 
 include(CMakeParseArguments)
 
-## .rst:
-##   yoda_create_library
-## -----------------------
-##
-## Create an object library with target "<TARGET>Objects" and combine the Objects library with the dependencies 
-## in a static (and optionally) shared library with names "<NAME>Static.a" and <NAME>Shared.so" respectively.
-## 
-## .. code-block::cmake 
-##
-##    ypda_create_library(TARGET OBJECTS LIBRARIES DEPENDS SOURCES PUBLIC_BUILD_INCLUDES PUBLIC_INSTALL_INCLUDES 
-##                                    INTERFACE_BUILD_INCLUDES INTERFACE_INSTALL_INCLUDES PRIVATE_BUILD_INCLUDES
-##                                    VERSION INSTALL_DESTINATION)
-##    ``TARGET:STRING=<>``
-##       Name of the library
-##    TARGET:STRING=<>                   - Target used by CMake (e.g SerialboxCoreLibrary)
-##    OBJECTS:STRING=<>                  - Object libraries to include (e.g SerialboxCoreLibraryObjects)
-##    NATIVE_PYTHON_LIB:BOOL=<>          - Generate a library which can be nativly imported in Python3. This
-##                                         means the library will have no prefix and the suffix is set to .so
-##    LIBRARIES:STRING<>                 - Specify external libraries or flags to be use when linking the 
-##                                         target
-##    DEPENDS:STRING=<>                  - Specify other targets the library depends on
-##    SOURCES:STRING=<>                  - List of source files
-##    VERSION:STRING=<>                  - version number of the library
-##    INSTALL_DESTINATION:STRING=<>      - install directory
+#.rst:
+# .. _yoda_create_library:
+#
+# yoda_create_library
+# -------------------------
+#
+# Create an object library with target *<TARGET>Objects* and combine the Objects library with the dependencies 
+# in a static (and optionally) shared library with names *<TARGET>Objects.a* , *<NAME>Static.a* and 
+# *<NAME>Shared.so* respectively. The shared library is compiled if the global CMake variable ``BUILD_SHARED_LIBS``
+# is active
+# 
+# .. code-block:: cmake 
+#
+#   yoda_create_library(TARGET SOURCES VERSION TARGET_GROUP TARGET_NAMESPACE 
+#           INSTALL_DESTINATION OBJECTS LIBRARIES DEPENDS SOURCES PUBLIC_BUILD_INCLUDES 
+#           PUBLIC_INSTALL_INCLUDES INTERFACE_BUILD_INCLUDES INTERFACE_INSTALL_INCLUDES 
+#           PRIVATE_BUILD_INCLUDES )
+#
+# ``TARGET:STRING``
+#    Target name of the library
+# ``SOURCES:STRING=<>``
+#    List of source files to be comiled in the library
+# ``VERSION:STRING``
+#    version of the library
+# ``TARGET_GROUP:STRING`` [optional]
+#    Target group where the target will be added. The target will be exported in file
+#    <INSTALL_DESTINATION>/<TARGET_GROUP>.cmake
+# ``TARGET_NAMESPACE:STRING`` [optional]
+#    Namespace where the target will be generated
+# ``INSTALL_DESTINATION:STRING`` [optional]
+#    path to install directory
+# ``OBJECTS:STRING=<>`` [optional]
+#    Object libraries to include in the library
+# ``LIBRARIES:STRING=<>`` [optional]
+#    External libraries (not CMake targets) on which the library depends on
+# ``DEPENDS:STRING=<>`` [optional]
+#    CMake target libraries on which the library depends on
+# ``[PUBLIC|INTERFACE|PRIVATE]_[BUILD|INSTALL]_INCLUDES`` [optional]
+#    List of include paths to add as property of the target. Different argument keywords are used to 
+#    specify PUBLIC, INTERFACE or PRIVATE properties as well as to add it to the BUILD or INSTALL 
+#    generator expression
 function(yoda_create_library)
 
   #
@@ -130,11 +147,6 @@ function(yoda_create_library)
 
   target_include_directories(${target}Objects PUBLIC ${__include_paths} )
   unset(__include_paths)
-
-  if(nativePythonLibrary)
-    set_target_properties(${target}Static PROPERTIES PREFIX "")
-    set_target_properties(${target}Static PROPERTIES SUFFIX ".so")
-  endif()
 
   set(opt_arg)
   if(ARG_TARGET_GROUP) 
