@@ -66,7 +66,7 @@ function(yoda_create_library)
   yoda_require_arg("VERSION" ${ARG_VERSION})
 
   if(ARG_INSTALL_DESTINATION)
-    set(install_destination ${ARG_INSTALL_DESTINATION)
+    set(install_destination ${ARG_INSTALL_DESTINATION})
   else()
     set(install_destination lib)
   endif()
