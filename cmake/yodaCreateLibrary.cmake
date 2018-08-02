@@ -123,10 +123,6 @@ function(yoda_create_library)
 
   ## Propagate the interface include directories of dependencies
   unset(__include_paths)
-#  foreach(lib ${ARG_DEPENDS})
-#    list(APPEND __include_paths $<BUILD_INTERFACE:$<TARGET_PROPERTY:${lib},INTERFACE_INCLUDE_DIRECTORIES>>)
-#    list(APPEND __include_paths $<INSTALL_INTERFACE:$<TARGET_PROPERTY:${lib},INTERFACE_INCLUDE_DIRECTORIES>>)
-#  endforeach()
 
   target_include_directories(${ARG_TARGET}Objects PUBLIC ${__include_paths} )
   unset(__include_paths)
@@ -198,10 +194,6 @@ function(yoda_create_library)
 
 ## Propagate the interface include directories of dependencies
   unset(__include_paths)
-#  foreach(lib ${ARG_DEPENDS})
-#    list(APPEND __include_paths $<BUILD_INTERFACE:$<TARGET_PROPERTY:${lib},INTERFACE_INCLUDE_DIRECTORIES>>)
-#    unset(__include_paths)
-#  endforeach()
 
   target_include_directories(${ARG_TARGET}Static INTERFACE ${__include_paths} )
   unset(__include_paths)
