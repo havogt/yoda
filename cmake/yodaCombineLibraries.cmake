@@ -32,11 +32,12 @@ include(yodaRequireArg)
 #   Destition (relative to ``CMAKE_INSTALL_PREFIX``) to install the libraries.
 # ``DEPENDS`` [optional]
 #   List of external libraries and/or CMake targets treated as dependencies of the library.
-#
+# ``EXPORT_GROUP`` [optional]
+#   group where to export the target
 function(yoda_combine_libraries)
   set(options)
   set(one_value_args NAME INSTALL_DESTINATION VERSION)
-  set(multi_value_args OBJECTS DEPENDS)
+  set(multi_value_args OBJECTS DEPENDS EXPORT_GROUP)
   cmake_parse_arguments(ARG "${options}" "${one_value_args}" "${multi_value_args}" ${ARGN})
 
   yoda_require_arg("VERSION" ${ARG_VERSION}) 
@@ -60,10 +61,16 @@ function(yoda_combine_libraries)
   set_target_properties(${ARG_NAME}Static PROPERTIES OUTPUT_NAME ${ARG_NAME})
   set_target_properties(${ARG_NAME}Static PROPERTIES VERSION ${ARG_VERSION})
 
-  install(TARGETS ${ARG_NAME}Static 
-          DESTINATION ${ARG_INSTALL_DESTINATION} 
-          EXPORT ${ARG_NAME}Targets)
-  
+  if(NOT("${ARG_EXPORT_GROUP}" STREQUAL ""))
+    set(export_name ${ARG_EXPORT_GROUP})
+  else()
+    set(export_name  ${ARG_NAME}Targets)
+  endif()
+
+  install(TARGETS ${ARG_NAME}Static
+          DESTINATION ${ARG_INSTALL_DESTINATION}
+          EXPORT ${export_name})
+
   # Add shared library
   if(BUILD_SHARED_LIBS)
     add_library(${ARG_NAME}Shared SHARED ${object_sources})
