@@ -45,6 +45,6 @@ function(yoda_external_package)
   )
 
   yoda_check_required_vars(SET_VARS "GridTools_DIR" REQUIRED_VARS ${ARG_REQUIRED_VARS})
-  set(GridTools_DIR "${install_dir}" CACHE INTERNAL "")
+  set(GridTools_DIR "${install_dir}/lib/cmake" CACHE INTERNAL "")
 
 endfunction()
