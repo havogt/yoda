@@ -45,7 +45,7 @@ function(yoda_external_package)
   endif()
   find_package(bash REQUIRED)
 
-  set(PROTOBUF_PROTOC "${install_dir}/bin/protoc" CACHE INTERNAL "")
+  set(PROTOBUF_PROTOC "${CMAKE_BINARY_DIR}/protobuf-prefix/src/protobuf-build/protoc" CACHE INTERNAL "")
   set(PROTOBUF_LIBPROTOBUF_PATH "${install_dir}/lib" CACHE INTERNAL "")
   set(PROTOBUF_PYTHON_SOURCE "${source_dir}/python" CACHE INTERNAL "")
   set(PROTOBUF_PYTHON_INSTALL "${install_dir}/python" CACHE INTERNAL "" )
