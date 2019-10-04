@@ -65,8 +65,7 @@ function(yoda_external_package)
     set(dawn_DIR "${install_dir}/cmake" PARENT_SCOPE)
   else()
     ExternalProject_Add(dawn
-      SOURCE_DIR ${ARG_SOURCE_DIR}
-      SOURCE_SUBDIR "bundle"
+      SOURCE_DIR ${ARG_SOURCE_DIR}/bundle
       INSTALL_DIR  ${CMAKE_INSTALL_PREFIX}
       BUILD_ALWAYS 1
       CMAKE_ARGS ${ARG_CMAKE_ARGS}
