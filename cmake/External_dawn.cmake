@@ -1,6 +1,6 @@
 ##===-------------------------------------------------------------------------------------------===##
 ##
-##  This file is distributed under the MIT License (MIT). 
+##  This file is distributed under the MIT License (MIT).
 ##  See LICENSE.txt for details.
 ##
 ##===------------------------------------------------------------------------------------------===##
@@ -11,7 +11,7 @@ include(yodaRequireOnlyOneOf)
 include(yodaCheckRequiredVars)
 include(yodaCloneRepository)
 
-set(DIR_OF_PROTO_EXTERNAL ${CMAKE_CURRENT_LIST_DIR})  
+set(DIR_OF_PROTO_EXTERNAL ${CMAKE_CURRENT_LIST_DIR})
 
 function(yoda_external_package)
   set(options)
@@ -28,8 +28,8 @@ function(yoda_external_package)
     message(FATAL_ERROR "invalid argument ${ARG_UNPARSED_ARGUMENTS}")
   endif()
 
-  yoda_set_external_properties(NAME "dawn" 
-    INSTALL_DIR install_dir 
+  yoda_set_external_properties(NAME "dawn"
+    INSTALL_DIR install_dir
     SOURCE_DIR source_dir
     BINARY_DIR binary_dir
   )
@@ -42,7 +42,7 @@ function(yoda_external_package)
   if(ARG_GIT_REPOSITORY)
     yoda_clone_repository(NAME dawn_src URL ${ARG_GIT_REPOSITORY} BRANCH ${ARG_GIT_TAG} SOURCE_DIR source_dir )
 
-    set(options_file ${source_dir}/cmake/DawnOptions.cmake)
+    set(options_file ${source_dir}/dawn/cmake/DawnOptions.cmake)
     if(EXISTS ${options_file})
       include(${options_file})
     else()
@@ -56,19 +56,20 @@ function(yoda_external_package)
     ExternalProject_Add(dawn
       PREFIX dawn-prefix
       SOURCE_DIR ${ARG_SOURCE_DIR}
-      SOURCE_SUBDIR "bundle"
+      SOURCE_SUBDIR "dawn/bundle"
       INSTALL_DIR "${install_dir}"
       BUILD_ALWAYS 1
-      CMAKE_ARGS ${ARG_CMAKE_ARGS} 
+      CMAKE_ARGS ${ARG_CMAKE_ARGS}
     )
 
     set(dawn_DIR "${install_dir}/cmake" PARENT_SCOPE)
   else()
     ExternalProject_Add(dawn
       SOURCE_DIR ${ARG_SOURCE_DIR}
+      SOURCE_SUBDIR "bundle"
       INSTALL_DIR  ${CMAKE_INSTALL_PREFIX}
       BUILD_ALWAYS 1
-      CMAKE_ARGS ${ARG_CMAKE_ARGS} 
+      CMAKE_ARGS ${ARG_CMAKE_ARGS}
     )
 
     set(dawn_DIR "${CMAKE_INSTALL_PREFIX}/cmake" PARENT_SCOPE)
