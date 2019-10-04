@@ -1,6 +1,6 @@
 ##===-------------------------------------------------------------------------------------------===##
 ##
-##  This file is distributed under the MIT License (MIT). 
+##  This file is distributed under the MIT License (MIT).
 ##  See LICENSE.txt for details.
 ##
 ##===------------------------------------------------------------------------------------------===##
@@ -11,7 +11,7 @@ include(yodaRequireOnlyOneOf)
 include(yodaCheckRequiredVars)
 include(yodaCloneRepository)
 
-set(DIR_OF_PROTO_EXTERNAL ${CMAKE_CURRENT_LIST_DIR})  
+set(DIR_OF_PROTO_EXTERNAL ${CMAKE_CURRENT_LIST_DIR})
 
 function(yoda_external_package)
   set(options)
@@ -28,8 +28,8 @@ function(yoda_external_package)
     message(FATAL_ERROR "invalid argument ${ARG_UNPARSED_ARGUMENTS}")
   endif()
 
-  yoda_set_external_properties(NAME "gtclang" 
-    INSTALL_DIR install_dir 
+  yoda_set_external_properties(NAME "gtclang"
+    INSTALL_DIR install_dir
     SOURCE_DIR source_dir
     BINARY_DIR binary_dir
   )
@@ -42,7 +42,7 @@ function(yoda_external_package)
   if(ARG_GIT_REPOSITORY)
     yoda_clone_repository(NAME gtclang URL ${ARG_GIT_REPOSITORY} BRANCH ${ARG_GIT_TAG} SOURCE_DIR source_dir )
 
-    set(options_file ${source_dir}/cmake/GTClangOptions.cmake)
+    set(options_file ${source_dir}/gtclang/cmake/GTClangOptions.cmake)
     if(EXISTS ${options_file})
       include(${options_file})
     endif()
@@ -54,9 +54,9 @@ function(yoda_external_package)
     ExternalProject_Add(gtclang
       PREFIX gtclang-prefix
       SOURCE_DIR ${ARG_SOURCE_DIR}
-      SOURCE_SUBDIR "bundle"
+      SOURCE_SUBDIR "gtclang/bundle"
       INSTALL_DIR "${install_dir}"
-      CMAKE_ARGS ${ARG_CMAKE_ARGS} 
+      CMAKE_ARGS ${ARG_CMAKE_ARGS}
     )
   else()
     ExternalProject_Add(gtclang
