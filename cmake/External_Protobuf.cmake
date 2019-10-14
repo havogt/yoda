@@ -58,7 +58,6 @@ function(yoda_external_package)
 
  
   set(_PROTOBUF_INSTALL_DIR_ ${install_dir})
-  set(_PROTOBUF_SOURCE_DIR_ ${CMAKE_BINARY_DIR}/protobuf-prefix/src/protobuf)
   include(yodaGetScriptDir)
   yoda_get_script_dir(script_dir)
 
@@ -87,7 +86,7 @@ function(yoda_external_package)
   ExternalProject_Add_Step(
     protobuf post-build
     COMMAND ${CMAKE_COMMAND} -P ${post_build_output_script}
-    DEPENDEES install python-build
+    DEPENDEES install
   )
 
   ExternalProject_Get_Property(protobuf install_dir)
